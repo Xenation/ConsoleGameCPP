@@ -6,11 +6,8 @@
 
 class Graphic {
 public:
-	int width;
-	int height;
-	char** contents;
-	Graphic(const char** cont, int width, int height);
-	~Graphic();
-	virtual void CopyToBuffer(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Pos pos);
+	int width = 0;
+	int height = 0;
+	virtual void Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Pos pos) = 0;
 };
 

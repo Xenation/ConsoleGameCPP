@@ -26,6 +26,6 @@ void EntityManager::UpdateAllEntities() {
 
 void EntityManager::RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
 	for (int i = 0; i < entities->size(); i++) {
-		entities->at(i)->CopyToBuffer(buffer);
+		entities->at(i)->Render(buffer);
 	}
 }

@@ -50,15 +50,20 @@ void Renderer::ClearBuffer() {
 }
 
 void Renderer::EndFrame() {
-	Time::getInstance().deltaTime = Time::time() - frameStart;
-	float toSleep = frameTime - Time::getDeltaTime();
+	renderTime = Time::time() - frameStart;
+	float toSleep = frameTime - renderTime;
 	if (toSleep > 0) {
 		Sleep(toSleep);
 	}
+	Time::getInstance().deltaTime = Time::time() - frameStart;
 	frameStart = Time::time();
 	frameCount++;
 }
 
 int Renderer::getFrameCount() {
 	return frameCount;
+}
+
+float Renderer::getRenderTime() {
+	return renderTime;
 }
