@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "EntityManager.h"
+#include <iostream>
+#include <iomanip>
 
 
 EntityManager::EntityManager() {
@@ -9,6 +11,7 @@ EntityManager::EntityManager() {
 
 EntityManager::~EntityManager() {
 	delete(entities);
+	std::cout << "EntityManager Disposed!" << std::endl;
 }
 
 void EntityManager::RegisterEntity(Entity* entity) {
