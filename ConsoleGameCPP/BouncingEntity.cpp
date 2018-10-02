@@ -2,7 +2,7 @@
 #include "BouncingEntity.h"
 
 
-BouncingEntity::BouncingEntity(Graphic* graphic, Pos pos) : Entity::Entity(graphic, pos) {
+BouncingEntity::BouncingEntity(Graphic* graphic, Pos pos) : Entity::Entity(graphic, pos, true) {
 	this->velocity = {1, 1};
 }
 
@@ -24,4 +24,8 @@ void BouncingEntity::Update() {
 	}
 	position.x += velocity.x;
 	position.y += velocity.y;
+}
+
+void BouncingEntity::OnCollisionTouch(Collider* touched) {
+	velocity.x = velocity.y = 0;
 }
