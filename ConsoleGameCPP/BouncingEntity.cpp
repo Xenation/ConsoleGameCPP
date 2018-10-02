@@ -26,6 +26,21 @@ void BouncingEntity::Update() {
 	position.y += velocity.y;
 }
 
-void BouncingEntity::OnCollisionTouch(Collider* touched) {
-	velocity.x = velocity.y = 0;
+void BouncingEntity::OnCollisionTouch(Collider* touched, Side side) {
+	switch (side) {
+	case Top:
+		velocity.y = 1;
+		break;
+	case Left:
+		velocity.x = 1;
+		break;
+	case Right:
+		velocity.x = -1;
+		break;
+	case Bottom:
+		velocity.y = -1;
+		break;
+	default:
+		break;
+	}
 }

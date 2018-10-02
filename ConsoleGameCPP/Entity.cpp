@@ -24,6 +24,6 @@ void Entity::Update() {
 	
 }
 
-void Entity::OnCollisionTouch(Collider* touched) {
+void Entity::OnCollisionTouch(Collider* touched, Side side) {
 
 }

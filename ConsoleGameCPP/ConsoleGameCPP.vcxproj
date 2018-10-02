@@ -147,7 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.h" />
     <ClInclude Include="ArtGraphic.h" />
     <ClInclude Include="BouncingEntity.h" />
     <ClInclude Include="Collider.h" />
@@ -166,8 +165,6 @@
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\TestImageASCII.cpp" />
     <ClCompile Include="ArtGraphic.cpp" />
     <ClCompile Include="BouncingEntity.cpp" />
     <ClCompile Include="Collider.cpp" />

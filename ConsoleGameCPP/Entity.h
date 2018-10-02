@@ -13,6 +13,6 @@ public:
 	~Entity();
 	virtual void Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]);
 	virtual void Update();
-	virtual void OnCollisionTouch(Collider* touched);
+	virtual void OnCollisionTouch(Collider* touched, Side side);
 };
 
