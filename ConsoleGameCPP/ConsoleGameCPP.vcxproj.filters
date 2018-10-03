@@ -87,6 +87,12 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PlatformGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -150,6 +156,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MathStructs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\PlatformGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

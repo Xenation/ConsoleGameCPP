@@ -36,7 +36,7 @@ bool ImageASCII::getNbLignesNbColonnes(std::string nomImage) {
 			// on check si le texte possède bien un nombre de caracteres équivalent sur chaque ligne
 			uniforme_ligne = (uniforme_ligne && (nb_colonnes == -1 && ligne.size() != 0) || ligne.size() == nb_colonnes);
 
-			// on ne garde que la valueur de la colonnes la plus grande
+			// on ne garde que la valeur de la colonnes la plus grande
 			if(nb_colonnes < static_cast<int>(ligne.size())) nb_colonnes = ligne.size();
 
 			nb_lignes++;
@@ -50,7 +50,7 @@ bool ImageASCII::getNbLignesNbColonnes(std::string nomImage) {
 }
 
 
-char**  ImageASCII::initialiserTableau(int col, int lign) {
+char** ImageASCII::initialiserTableau(int col, int lign) {
 
 	image = new char*[lign];
 	for (int i = 0; i < lign; i++) {

@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.h" />
+    <ClInclude Include="PlatformGenerator.h" />
     <ClInclude Include="AnimationHolder.h" />
     <ClInclude Include="ArtGraphic.h" />
     <ClInclude Include="BouncingEntity.h" />
@@ -173,6 +175,8 @@
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.cpp" />
+    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\PlatformGenerator.cpp" />
     <ClCompile Include="AnimationHolder.cpp" />
     <ClCompile Include="ArtGraphic.cpp" />
     <ClCompile Include="BouncingEntity.cpp" />
