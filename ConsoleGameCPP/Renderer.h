@@ -6,10 +6,11 @@
 #include "EntityManager.h"
 #include "NYTimer.h"
 #include "Time.h"
+#include "Camera.h"
 
 class Renderer {
 public:
-	Renderer(int frameCap);
+	Renderer(Camera* camera, int frameCap = 0);
 	~Renderer();
 	void Initialize();
 	void ResetFrameTimer();

@@ -4,7 +4,7 @@
 #include "Entity.h"
 
 
-Collider::Collider(Entity* entity, Pos* pos, Pos size) {
+Collider::Collider(Entity* entity, Vec2i* pos, Vec2i size) {
 	this->entity = entity;
 	this->layer = &CollisionLayer::Default;
 	this->position = pos;

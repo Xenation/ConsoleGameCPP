@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "EntityManager.h"
 
-Entity::Entity(Graphic* graphic, Pos pos, bool hasCollider) {
+Entity::Entity(Graphic* graphic, Vec2i pos, bool hasCollider) {
 	this->graphic = graphic;
 	this->position = pos;
 	if (hasCollider) {

@@ -5,7 +5,7 @@
 #include <array>
 #include "Time.h"
 
-Player::Player(Graphic* graphic, Pos pos) : Entity::Entity(graphic, pos) {
+Player::Player(Graphic* graphic, Vec2i pos) : Entity::Entity(graphic, pos) {
 	this->velocity = { 0, 0 }; // No velocity at first
 	assignState(&PlayerState::standing);
 	isJumping = false;
@@ -62,7 +62,7 @@ void Player::assignState(PlayerState* state) {
 	this->state = state;
 }
 
-void Player::addVelocity(Pos velocity) {
+void Player::addVelocity(Vec2i velocity) {
 	this->velocity = { this->velocity.x + velocity.x, this->velocity.y + velocity.y };
 }
 
