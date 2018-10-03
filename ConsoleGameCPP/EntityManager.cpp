@@ -2,6 +2,7 @@
 #include "EntityManager.h"
 #include <iostream>
 #include <iomanip>
+#include "PhysicsManager.h"
 
 
 EntityManager::EntityManager() {
@@ -19,13 +20,14 @@ void EntityManager::RegisterEntity(Entity* entity) {
 }
 
 void EntityManager::UpdateAllEntities() {
-	for (int i = 0; i < entities->size(); i++) {
+	for (unsigned int i = 0; i < entities->size(); i++) {
 		entities->at(i)->Update();
 	}
+	PhysicsManager::getInstance().UpdateAllColliders();
 }
 
 void EntityManager::RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
-	for (int i = 0; i < entities->size(); i++) {
+	for (unsigned int i = 0; i < entities->size(); i++) {
 		entities->at(i)->Render(buffer);
 	}
 }
