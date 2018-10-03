@@ -6,6 +6,8 @@ class Entity;
 class Collider {
 public:
 	Entity* entity;
+	CollisionLayer layer;
+	unsigned int layerMask;
 	Collider(Entity* entity, Pos* pos, Pos size);
 	~Collider();
 	void Update(std::unordered_map<unsigned int, Collider*>* colliders);

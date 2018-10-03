@@ -6,11 +6,12 @@
 
 Collider::Collider(Entity* entity, Pos* pos, Pos size) {
 	this->entity = entity;
+	this->layer = CollisionLayer::Default;
+	this->layerMask = CollisionLayer::Default;
 	this->position = pos;
 	this->size = size;
 	this->uid = PhysicsManager::getInstance().RegisterCollider(this);
 }
-
 
 Collider::~Collider() {
 	PhysicsManager::getInstance().UnregisterCollider(uid);
@@ -19,13 +20,7 @@ Collider::~Collider() {
 void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
 	
 	for (std::pair<unsigned int, Collider*> pair : (*colliders)) {
-		if (pair.second == this) continue;
-		/*if (pair.second->position->x < this->position->x + this->size.x + 1
-			&& pair.second->position->x + pair.second->size.x > this->position->x - 1
-			&& pair.second->position->y < this->position->y + this->size.y + 1
-			&& pair.second->position->y + pair.second->size.y > this->position->y - 1) {
-			entity->OnCollisionTouch(pair.second);
-		}*/
+		if (pair.second == this || !(pair.second->layer & this->layerMask)) continue;
 
 		if (pair.second->position->x == this->position->x + this->size.x + 1
 			&& pair.second->position->y <= this->position->y + this->size.y + 1
