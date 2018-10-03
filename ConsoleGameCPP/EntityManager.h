@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include "Entity.h"
 #include "Constants.h"
+#include "Camera.h"
 
 class EntityManager {
 public:
@@ -13,7 +14,7 @@ public:
 	}
 	void RegisterEntity(Entity* entity);
 	void UpdateAllEntities();
-	void RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]);
+	void RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Camera* camera);
 private:
 	EntityManager();
 	~EntityManager();

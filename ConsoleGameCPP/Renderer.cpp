@@ -10,9 +10,10 @@ Renderer::Renderer(Camera* camera, int frameCap) {
 	}
 	frameStart = 0;
 	Time::getInstance();
-	dwBufferSize = {SCREEN_WIDTH, SCREEN_HEIGHT};
+	dwBufferSize = { camera->getWidth(), camera->getHeight() };
 	dwBufferCoord = {0, 0};
-	rectRegion = {0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1};
+	rectRegion = {0, 0, camera->getWidth() - 1, camera->getHeight() - 1};
+	this->camera = camera;
 }
 
 
@@ -23,12 +24,13 @@ Renderer::~Renderer() {
 void Renderer::Initialize() {
 	HANDLE rHnd; /* read (input) handle */
 
-	  /* Window size coordinates, be sure to start index at zero! */
-	SMALL_RECT windowSize = { 0, 0, 109, 39 };
+	/* Window size coordinates, be sure to start index at zero! */
+	//SMALL_RECT windowSize = { 0, 0, 109, 39 };
+	SMALL_RECT windowSize = { 0, 0, camera->getWidth() - 1, camera->getHeight() - 1 };
 
 
 	/* A COORD struct for specificying the console's screen buffer dimensions */
-	COORD bufferSize = { 110, 40 };
+	COORD bufferSize = { camera->getWidth(), camera->getHeight() };
 
 	  /* initialize handles */
 	outputHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -63,7 +65,7 @@ void Renderer::ResetFrameTimer() {
 }
 
 void Renderer::Render() {
-	EntityManager::getInstance().RenderAllEntities(buffer);
+	EntityManager::getInstance().RenderAllEntities(buffer, camera);
 	WriteConsoleOutput(outputHandle, (CHAR_INFO *) buffer, dwBufferSize, dwBufferCoord, &rectRegion);
 }
 

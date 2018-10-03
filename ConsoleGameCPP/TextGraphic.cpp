@@ -40,9 +40,12 @@ char* TextGraphic::getText() {
 	return txt;
 }
 
-void TextGraphic::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Vec2i pos) {
+void TextGraphic::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Vec2i pos, Camera* camera) {
+	Box camBox = camera->getBoundingBox();
+	Vec2i screenPos = pos - camera->getPosition();
 	for (int i = 0; i < this->width; i++) {
-		buffer[pos.y][pos.x + i].Char.AsciiChar = this->text[i];
-		buffer[pos.y][pos.x + i].Attributes = 0x0E;
+		if (!isInBox(camBox, { pos.x + i, pos.y })) continue;
+		buffer[screenPos.y][screenPos.x + i].Char.AsciiChar = this->text[i];
+		buffer[screenPos.y][screenPos.x + i].Attributes = 0x0E;
 	}
 }

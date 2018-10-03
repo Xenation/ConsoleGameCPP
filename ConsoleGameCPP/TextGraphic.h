@@ -7,7 +7,7 @@ public:
 	~TextGraphic();
 	void setText(const char* text);
 	char* getText();
-	virtual void Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Vec2i pos);
+	virtual void Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Vec2i pos, Camera* camera);
 private:
 	char* text;
 };

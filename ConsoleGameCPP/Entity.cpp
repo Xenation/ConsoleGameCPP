@@ -16,8 +16,8 @@ Entity::~Entity() {
 	delete collider;
 }
 
-void Entity::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
-	graphic->Render(buffer, this->position);
+void Entity::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Camera* camera) {
+	graphic->Render(buffer, this->position, camera);
 }
 
 void Entity::Update() {

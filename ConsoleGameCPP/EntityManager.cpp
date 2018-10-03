@@ -26,8 +26,8 @@ void EntityManager::UpdateAllEntities() {
 	PhysicsManager::getInstance().UpdateAllColliders();
 }
 
-void EntityManager::RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
+void EntityManager::RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Camera* camera) {
 	for (unsigned int i = 0; i < entities->size(); i++) {
-		entities->at(i)->Render(buffer);
+		entities->at(i)->Render(buffer, camera);
 	}
 }
