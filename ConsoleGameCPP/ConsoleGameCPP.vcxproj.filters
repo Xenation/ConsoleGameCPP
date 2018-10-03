@@ -57,7 +57,6 @@
     <ClInclude Include="BouncingEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="PlayerState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -74,12 +73,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AnimationHolder.h">
-=======
+	  <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
->>>>>>> 58fa32beb8acff2354647aa2efd2564c1c8c7350
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CollisionLayer.h">

@@ -180,11 +180,8 @@
     <ClCompile Include="ConsoleGameCPP.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="JumpingState.cpp" />
-=======
     <ClCompile Include="PhysicsManager.cpp" />
->>>>>>> 58fa32beb8acff2354647aa2efd2564c1c8c7350
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Renderer.cpp" />
