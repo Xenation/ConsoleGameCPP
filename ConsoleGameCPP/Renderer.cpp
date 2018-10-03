@@ -2,7 +2,7 @@
 #include "Renderer.h"
 
 
-Renderer::Renderer(int frameCap = 0) {
+Renderer::Renderer(Camera* camera, int frameCap) {
 	if (frameCap != 0) {
 		frameTime = 1.0f / frameCap * 1000;
 	} else {

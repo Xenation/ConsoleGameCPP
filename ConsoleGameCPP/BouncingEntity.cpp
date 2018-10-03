@@ -2,7 +2,7 @@
 #include "BouncingEntity.h"
 
 
-BouncingEntity::BouncingEntity(Graphic* graphic, Pos pos) : Entity::Entity(graphic, pos, true) {
+BouncingEntity::BouncingEntity(Graphic* graphic, Vec2i pos) : Entity::Entity(graphic, pos, true) {
 	this->velocity = {1, 1};
 }
 

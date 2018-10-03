@@ -6,10 +6,10 @@
 
 class Entity {
 public:
-	Pos position;
+	Vec2i position;
 	Graphic* graphic;
 	Collider* collider;
-	Entity(Graphic* graphic, Pos pos, bool hasCollider = false);
+	Entity(Graphic* graphic, Vec2i pos, bool hasCollider = false);
 	~Entity();
 	virtual void Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]);
 	virtual void Update();

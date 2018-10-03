@@ -4,11 +4,11 @@
 
 class BouncingEntity : public Entity {
 public:
-	BouncingEntity(Graphic* graphic, Pos pos);
+	BouncingEntity(Graphic* graphic, Vec2i pos);
 	~BouncingEntity();
 	virtual void Update();
 	virtual void OnCollisionTouch(Collider* touched, Side side);
 private:
-	Pos velocity;
+	Vec2i velocity;
 };
 

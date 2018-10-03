@@ -40,7 +40,7 @@ char* TextGraphic::getText() {
 	return txt;
 }
 
-void TextGraphic::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Pos pos) {
+void TextGraphic::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Vec2i pos) {
 	for (int i = 0; i < this->width; i++) {
 		buffer[pos.y][pos.x + i].Char.AsciiChar = this->text[i];
 		buffer[pos.y][pos.x + i].Attributes = 0x0E;
