@@ -147,29 +147,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationHolder.h" />
     <ClInclude Include="ArtGraphic.h" />
     <ClInclude Include="BouncingEntity.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityManager.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="JumpingState.h" />
     <ClInclude Include="MathStructs.h" />
     <ClInclude Include="NYTimer.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="RunningLeftState.h" />
+    <ClInclude Include="RunningRightState.h" />
+    <ClInclude Include="StandingState.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextGraphic.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationHolder.cpp" />
     <ClCompile Include="ArtGraphic.cpp" />
     <ClCompile Include="BouncingEntity.cpp" />
     <ClCompile Include="ConsoleGameCPP.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="JumpingState.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="RunningLeftState.cpp" />
+    <ClCompile Include="RunningRightState.cpp" />
+    <ClCompile Include="StandingState.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

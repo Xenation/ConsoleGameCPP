@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Windows.h"
-#include "MathStructs.h";
+#include "MathStructs.h"
 #include "Constants.h"
 
 class Graphic {
