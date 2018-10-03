@@ -13,6 +13,7 @@ public:
 		static AnimationHolder *instance = new AnimationHolder();
 		return *instance;
 	}
+	Graphic* getPlayerStandingGraph();
 	void setStanding(Entity& entity);
 	void setRunningRight1(Entity& entity);
 	void setRunningRight2(Entity& entity);

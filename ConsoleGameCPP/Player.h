@@ -17,11 +17,13 @@ public:
 	void setYVelocity(int yVelocity);
 	void setJumpingAndRising(bool isJumpingAndRising);
 	bool getIsJumping();
+	virtual void OnCollisionTouch(Collider* touched, Side side);
 private:
 	Vec2i velocity;
 	class PlayerState* state;
 	bool isJumping;
 	bool isRising;
+	bool isFalling;
 	float elapsedJumpTime;
 	//bool isStanding;
 	//bool isJumping;

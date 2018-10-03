@@ -66,6 +66,10 @@ AnimationHolder::~AnimationHolder()
 {
 }
 
+Graphic* AnimationHolder::getPlayerStandingGraph() {
+	return playerStandingGraph;
+}
+
 void AnimationHolder::setStanding(Entity& entity) {
 	entity.graphic = playerStandingGraph; // TODO : méthode public setter dans Entity ?
 }
@@ -102,4 +106,3 @@ void AnimationHolder::setRunningLeft3(Entity& entity) {
 void AnimationHolder::setRunningLeft4(Entity& entity) {
 	entity.graphic = playerRunningLeftGraph4; // TODO : méthode public setter dans Entity ?
 }
-
