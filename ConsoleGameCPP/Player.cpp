@@ -5,12 +5,14 @@
 #include <array>
 #include "Time.h"
 
-Player::Player(Graphic* graphic, Vec2i pos) : Entity::Entity(graphic, pos) {
+Player::Player(Graphic* graphic, Vec2i pos) : Entity::Entity(graphic, pos, true) {
 	this->velocity = { 0, 0 }; // No velocity at first
 	assignState(&PlayerState::standing);
 	isJumping = false;
 	isRising = false;
+	isFalling = false;
 	elapsedJumpTime = 0.0f;
+	this->collider->layer = &CollisionLayer::Player;
 	//isStanding = true; // Starts standing
 	//isRunning = false;
 	//isJumping = false;
@@ -22,33 +24,33 @@ Player::~Player() {
 }
 
 void Player::Update() {
-	if (isJumping) {
+	
+	// Alfred va faire fonction demandant si y'a un truc en bas et on va check
+	if (isFalling && !isJumping) {
+		setYVelocity(1);
+	}
+	else if (isJumping) {
 		if (isRising) {
-			elapsedJumpTime += Time::getInstance().deltaTime / 1000; // TODO : récupérer le vrai temps écoulé ?
+			elapsedJumpTime += Time::getInstance().deltaTime / 1000;
 
-			if (elapsedJumpTime >= 0.8f) {
-				setYVelocity(2);
+			if (elapsedJumpTime >= 0.5f) {
+				setYVelocity(1);
 				isRising = false;
 				elapsedJumpTime = 0.0f;
 			}
 			else if (elapsedJumpTime >= 0.4f)
 			{
-				setYVelocity(1);
-			}
-			else if (elapsedJumpTime >= 0.2f)
-			{
-				setYVelocity(-1);
+				setYVelocity(0);
 			}
 		}
 	}
+
 	state->update(*this);
 	position.x += velocity.x;
 	position.y += velocity.y;
-}
 
-//void Player::handleInput(int input) {
-//	state->handleInput(*this, input);
-//}
+	isFalling = true; // Falling by default, colliders will then change the status if there is something underneath the player
+}
 
 void Player::enter() {
 	state->enter(*this);
@@ -81,4 +83,22 @@ void Player::setJumpingAndRising(bool isJumpingAndRising) {
 
 bool Player::getIsJumping() {
 	return isJumping;
+}
+
+void Player::OnCollisionTouch(Collider* touched, Side side) {
+	if (side == Side::Bottom) {
+		if (isJumping) {
+			isJumping = false;
+			assignState(&PlayerState::standing);
+			enter();
+			setYVelocity(0);
+		}
+		isFalling = false;
+	}
+	else if (side == Side::Left || side == Side::Right) {
+		setXVelocity(0);
+	}
+	else if (side == Side::Top) {
+		setYVelocity(-this->velocity.y);
+	}
 }

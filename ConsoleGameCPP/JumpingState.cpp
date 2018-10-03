@@ -28,7 +28,7 @@ JumpingState::~JumpingState()
 //}
 
 void JumpingState::enter(Player& player) {
-	player.setYVelocity(-2);
+	player.setYVelocity(-1);
 	player.setJumpingAndRising(true); // Launches jumping animation
 }
 
