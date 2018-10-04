@@ -60,6 +60,7 @@ void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
 				entity->OnCollisionTouch(pair.second, Side::Top);
 			}
 		}
+
 	}
 
 }
