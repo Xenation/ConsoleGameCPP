@@ -1,6 +1,7 @@
 #pragma once
 #include "MathStructs.h"
-class Camera {
+#include "Entity.h"
+class Camera : public Entity {
 public:
 	Camera(Vec2i pos, int width, int height);
 	~Camera();
@@ -9,9 +10,8 @@ public:
 	Vec2i getSize();
 	short getWidth();
 	short getHeight();
-	void Update();
+	virtual void Update();
 private:
-	Vec2i position;
 	short width;
 	short height;
 };

@@ -2,8 +2,7 @@
 #include "Camera.h"
 
 
-Camera::Camera(Vec2i pos, int width, int height) {
-	position = pos;
+Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, false) {
 	this->width = width;
 	this->height = height;
 }

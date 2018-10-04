@@ -3,8 +3,8 @@
 #include "Windows.h"
 #include "MathStructs.h"
 #include "Constants.h"
-#include "Camera.h"
 
+class Camera;
 class Graphic {
 public:
 	int width = 0;
