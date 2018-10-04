@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TextGraphic.h"
+#include "Camera.h"
 
 
 TextGraphic::TextGraphic() {

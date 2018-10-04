@@ -3,8 +3,8 @@
 #include "MathStructs.h"
 #include "Graphic.h"
 #include "Collider.h"
-#include "Camera.h"
 
+class Camera;
 class Entity {
 public:
 	Vec2i position;

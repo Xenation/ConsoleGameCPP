@@ -17,6 +17,7 @@ Entity::~Entity() {
 }
 
 void Entity::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Camera* camera) {
+	if (graphic == nullptr) return;
 	graphic->Render(buffer, this->position, camera);
 }
 
