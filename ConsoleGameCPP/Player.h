@@ -17,6 +17,8 @@ public:
 	void setYVelocity(int yVelocity);
 	void setJumpingAndRising(bool isJumpingAndRising);
 	bool getIsJumping();
+	bool getIsBlockedRight();
+	bool getIsBlockedLeft();
 	virtual void OnCollisionTouch(Collider* touched, Side side);
 private:
 	Vec2i velocity;
@@ -24,6 +26,8 @@ private:
 	bool isJumping;
 	bool isRising;
 	bool isFalling;
+	bool isBlockedRight;
+	bool isBlockedLeft;
 	float elapsedJumpTime;
 	//bool isStanding;
 	//bool isJumping;

@@ -48,7 +48,7 @@ void RunningRightState::handleInput(Player& player, const std::array<bool, 4> &i
 	else if (input[0]) {
 		// Do nothing : avoids frequently switching between states
 	}
-	else if (input[1] || input[2]) { // q key (or a key for qwerty keyboards) : running left
+	else if ((input[1] || input[2]) && !player.getIsBlockedRight()) { // q key (or a key for qwerty keyboards) : running left
 		player.assignState(&PlayerState::runningLeft);
 		player.enter();
 	}

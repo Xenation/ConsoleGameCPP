@@ -11,6 +11,8 @@ Player::Player(Graphic* graphic, Vec2i pos) : Entity::Entity(graphic, pos, true)
 	isJumping = false;
 	isRising = false;
 	isFalling = false;
+	isBlockedRight = false;
+	isBlockedLeft = false;
 	elapsedJumpTime = 0.0f;
 	this->collider->layer = &CollisionLayer::Player;
 	//isStanding = true; // Starts standing
@@ -52,6 +54,8 @@ void Player::Update() {
 	position.y += velocity.y;
 
 	isFalling = true; // Falling by default, colliders will then change the status if there is something underneath the player
+	isBlockedRight = false;
+	isBlockedLeft = false;
 }
 
 void Player::enter() {
@@ -87,6 +91,14 @@ bool Player::getIsJumping() {
 	return isJumping;
 }
 
+bool Player::getIsBlockedRight() {
+	return isBlockedRight;
+}
+
+bool Player::getIsBlockedLeft() {
+	return isBlockedLeft;
+}
+
 void Player::OnCollisionTouch(Collider* touched, Side side) {
 	
 	if (touched->layer == &CollisionLayer::Enemy)
@@ -102,7 +114,12 @@ void Player::OnCollisionTouch(Collider* touched, Side side) {
 			enter();
 		}
 	}
-	else if (side == Side::Left || side == Side::Right) {
+	else if (side == Side::Left) {
+		isBlockedLeft = true;
+		setXVelocity(0);
+	}
+	else if (side == Side::Right) {
+		isBlockedRight = true;
 		setXVelocity(0);
 	}
 	else if (side == Side::Top) {
