@@ -9,7 +9,6 @@
 
 void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 	 
-
 	ImageASCII *img = new ImageASCII();
 
 	if (img->genererImage(nomFichierImage)) {
@@ -32,14 +31,14 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 		for (int i = 0; i < img->getHeight(); i++) {
 			for (int j = 0; j < img->getWidth(); j++) {
 
-				/****** RECUPERATION DE LA POSITION DU JOUEUR ******/
+		/****** RECUPERATION DE LA POSITION DU JOUEUR ******/
 
 				if (charImg[i][j] == PLAYER_ASCII_CODE) {
 					playerInitialPosition = { j, i };
 				}
 
 
-				/****** GENERATION DES PLATEFORMES ******/
+		/****** GENERATION DES PLATEFORMES ******/
 
 				// début de la construction, initialisation de celle-ci
 				if (charImg[i][j] == PLATFORM_ASCII_CODE && !enConstruction) {
@@ -64,9 +63,6 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 						platformGraph[0] = new char[taillePlateform];
 
 						std::fill_n(platformGraph[0], taillePlateform, PLATFORM_ASCII_REPRESENTATION);
-
-						/*for (int k = 0; k < taillePlateform; k++)
-							std::cout << platformGraph[0][k] << std::endl;*/
 
 						Graphic* graph = new ArtGraphic(platformGraph, taillePlateform, 1);
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);

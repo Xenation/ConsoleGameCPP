@@ -16,4 +16,3 @@ private:
 	short width;
 	short height;
 };
-

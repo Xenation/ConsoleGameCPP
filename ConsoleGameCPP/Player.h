@@ -1,11 +1,12 @@
 #pragma once
 
+class PlatformGenerator;
 #include "Entity.h"
 #include <array>
 
 class Player : public Entity {
 public:
-	Player(Graphic* graphic, Vec2i pos);
+	Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator);
 	~Player();
 	virtual void Update();
 	//virtual void handleInput(int input);
@@ -29,6 +30,7 @@ private:
 	bool isBlockedRight;
 	bool isBlockedLeft;
 	float elapsedJumpTime;
+	PlatformGenerator* platformGenerator; // Useful to have the initial position
 	//bool isStanding;
 	//bool isJumping;
 	//bool isRunning;
