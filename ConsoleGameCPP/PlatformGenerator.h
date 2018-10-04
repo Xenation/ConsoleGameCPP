@@ -8,7 +8,7 @@ class PlatformGenerator {
 public :
 
 	const char PLATFORM_ASCII_CODE = '=';
-	const char PLATFORM_ASCII_REPRESENTATION = 'O';
+	const char PLATFORM_ASCII_REPRESENTATION = '_';
 
 	const char PLAYER_ASCII_CODE = 'P';
 
