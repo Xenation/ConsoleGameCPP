@@ -35,7 +35,9 @@ RunningLeftState::~RunningLeftState()
 //}
 
 void RunningLeftState::enter(Player& player) {
-	player.setXVelocity(-1);
+	if (!player.getIsBlockedLeft()) {
+		player.setXVelocity(-1);
+	}
 	elapsedRunningLeftTime = 0.0f;
 	AnimationHolder::instance().setRunningLeft1(player);
 }
