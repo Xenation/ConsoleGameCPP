@@ -9,7 +9,6 @@
 
 void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 	 
-
 	ImageASCII *img = new ImageASCII();
 
 	if (img->genererImage(nomFichierImage)) {
