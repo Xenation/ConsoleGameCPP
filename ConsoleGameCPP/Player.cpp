@@ -25,24 +25,26 @@ Player::~Player() {
 
 void Player::Update() {
 	
-	// Alfred va faire fonction demandant si y'a un truc en bas et on va check
-	if (isFalling && !isJumping) {
-		setYVelocity(1);
-	}
-	else if (isJumping) {
+	if (isJumping) {
 		if (isRising) {
 			elapsedJumpTime += Time::getInstance().deltaTime / 1000;
 
-			if (elapsedJumpTime >= 0.5f) {
+			if (elapsedJumpTime >= 0.3f) {
 				setYVelocity(1);
 				isRising = false;
 				elapsedJumpTime = 0.0f;
 			}
-			else if (elapsedJumpTime >= 0.4f)
-			{
-				setYVelocity(0);
-			}
+			//else if (elapsedJumpTime >= 0.4f)
+			//{
+			//	setYVelocity(0);
+			//}
 		}
+	}
+	else {
+		if (isFalling) {
+			setYVelocity(1);
+		}
+		elapsedJumpTime = 0.0f; // Resets the jump timer in case the full jump is interrupted by a platform
 	}
 
 	state->update(*this);
@@ -87,13 +89,13 @@ bool Player::getIsJumping() {
 
 void Player::OnCollisionTouch(Collider* touched, Side side) {
 	if (side == Side::Bottom) {
+		isFalling = false;
+		setYVelocity(0);
 		if (isJumping) {
 			isJumping = false;
 			assignState(&PlayerState::standing);
 			enter();
-			setYVelocity(0);
 		}
-		isFalling = false;
 	}
 	else if (side == Side::Left || side == Side::Right) {
 		setXVelocity(0);
