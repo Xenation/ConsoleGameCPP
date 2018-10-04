@@ -8,13 +8,11 @@
 
 
 void PlatformGenerator::generateWorld(std::string nomFichierImage) {
-
+	 
 
 	ImageASCII *img = new ImageASCII();
 
 	if (img->genererImage(nomFichierImage)) {
-
-		img->parcourirTableau(img->getImage());
 
 		char **charImg = img->getImage();
 
@@ -33,6 +31,15 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 
 		for (int i = 0; i < img->getHeight(); i++) {
 			for (int j = 0; j < img->getWidth(); j++) {
+
+				/****** RECUPERATION DE LA POSITION DU JOUEUR ******/
+
+				if (charImg[i][j] == PLAYER_ASCII_CODE) {
+					playerInitialPosition = { j, i };
+				}
+
+
+				/****** GENERATION DES PLATEFORMES ******/
 
 				// début de la construction, initialisation de celle-ci
 				if (charImg[i][j] == PLATFORM_ASCII_CODE && !enConstruction) {
@@ -55,6 +62,7 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 						// on créé donc l'entity de celle-ci
 						char** platformGraph = new char*[1];
 						platformGraph[0] = new char[taillePlateform];
+
 						std::fill_n(platformGraph[0], taillePlateform, PLATFORM_ASCII_REPRESENTATION);
 
 						/*for (int k = 0; k < taillePlateform; k++)
@@ -63,9 +71,6 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 						Graphic* graph = new ArtGraphic(platformGraph, taillePlateform, 1);
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);
 						colliderEnt3->collider->layer = &CollisionLayer::Decor;
-
-
-						std::cout << taillePlateform << std::endl;
 					}
 
 				}
@@ -78,4 +83,10 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 		std::cout << "image non trouvée" << std::endl;
 	}
 
+}
+
+
+
+Vec2i PlatformGenerator::getPlayerInitialPosition() {
+	return playerInitialPosition;
 }
