@@ -43,11 +43,11 @@ void StandingState::handleInput(Player& player, const std::array<bool, 4> &input
 		player.assignState(&PlayerState::jumping);
 		player.enter();
 	}
-	else if (input[0]) { // d key : running right
+	else if (input[0] && !player.getIsBlockedRight()) { // d key : running right
 		player.assignState(&PlayerState::runningRight);
 		player.enter();
 	}
-	else if (input[1] || input[2]) { // q key (or a key for qwerty keyboards) : running left
+	else if ((input[1] || input[2]) && !player.getIsBlockedLeft()) { // q key (or a key for qwerty keyboards) : running left
 		player.assignState(&PlayerState::runningLeft);
 		player.enter();
 	}

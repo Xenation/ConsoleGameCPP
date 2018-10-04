@@ -37,7 +37,7 @@ void JumpingState::handleInput(class Player& player, const std::array<bool, 4> &
 		player.assignState(&PlayerState::runningRight);
 		player.enter();
 	}
-	else if (input[1] || input[2]) { // q key (or a key for qwerty keyboards) : running left
+	else if ((input[1] || input[2]) && !player.getIsBlockedLeft()) { // q key (or a key for qwerty keyboards) : running left
 		player.assignState(&PlayerState::runningLeft);
 		player.enter();
 	}

@@ -35,22 +35,20 @@ RunningLeftState::~RunningLeftState()
 //}
 
 void RunningLeftState::enter(Player& player) {
-	if (!player.getIsBlockedLeft()) {
-		player.setXVelocity(-1);
-	}
+	player.setXVelocity(-1);
 	elapsedRunningLeftTime = 0.0f;
 	AnimationHolder::instance().setRunningLeft1(player);
 }
 
 void RunningLeftState::handleInput(Player& player, const std::array<bool, 4> &input) {
-	if (!player.getIsJumping() && input[3]) { // space key : jumping
+	if (input[3] && !player.getIsJumping()) { // space key : jumping
 		player.assignState(&PlayerState::jumping);
 		player.enter();
 	}
-	else if (input[1] || input[2]) { // q key (or a key for qwerty keyboards) : running left
+	else if ((input[1] || input[2]) && !player.getIsBlockedLeft()) { // q key (or a key for qwerty keyboards) : running left
 		// Do nothing : avoids frequently switching between states
 	}
-	else if (input[0]) { // d key : running right
+	else if (input[0] && !player.getIsBlockedRight()) { // d key : running right
 		player.assignState(&PlayerState::runningRight);
 		player.enter();
 	}
