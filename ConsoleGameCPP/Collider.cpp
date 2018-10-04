@@ -21,25 +21,44 @@ void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
 	for (std::pair<unsigned int, Collider*> pair : (*colliders)) {
 		if (pair.second == this || !((1 << pair.second->layer->layerIndex) & this->layer->layerMask)) continue;
 
-		if (pair.second->position->x == this->position->x + this->size.x + 1
-			&& pair.second->position->y <= this->position->y + this->size.y // + 1
-			&& pair.second->position->y + pair.second->size.y >= this->position->y ) { // Right side touch
-			entity->OnCollisionTouch(pair.second, Side::Right);
+		Collider* leftMost;
+		Collider* rightMost;
+		if (pair.second->position->x < this->position->x) {
+			leftMost = pair.second;
+			rightMost = this;
 		}
-		if (pair.second->position->x + pair.second->size.x == this->position->x - 1
-			&& pair.second->position->y <= this->position->y + this->size.y // + 1
-			&& pair.second->position->y + pair.second->size.y >= this->position->y) { // Left side touch
-			entity->OnCollisionTouch(pair.second, Side::Left);
+		else {
+			leftMost = this;
+			rightMost = pair.second;
 		}
-		if (pair.second->position->y + pair.second->size.y == this->position->y - 1
-			&& pair.second->position->x <= this->position->x + this->size.x
-			&& pair.second->position->x + pair.second->size.x >= this->position->x) { // Top side touch
-			entity->OnCollisionTouch(pair.second, Side::Top);
+		Collider* topMost;
+		Collider* bottomMost;
+		if (pair.second->position->y < this->position->y) {
+			topMost = pair.second;
+			bottomMost = this;
 		}
-		if (pair.second->position->y == this->position->y + this->size.y + 1
-			&& pair.second->position->x <= this->position->x + this->size.x
-			&& pair.second->position->x + pair.second->size.x >= this->position->x) { // Bottom side touch
-			entity->OnCollisionTouch(pair.second, Side::Bottom);
+		else {
+			topMost = this;
+			bottomMost = pair.second;
+		}
+
+		if (leftMost->size.x == rightMost->position->x - leftMost->position->x
+			&& topMost->size.y > bottomMost->position->y - topMost->position->y) { // Left/Right side touch
+			if (leftMost == this) { // Right
+				entity->OnCollisionTouch(pair.second, Side::Right);
+			}
+			else { // Left
+				entity->OnCollisionTouch(pair.second, Side::Left);
+			}
+		}
+		if (leftMost->size.x > rightMost->position->x - leftMost->position->x
+			&& topMost->size.y == bottomMost->position->y - topMost->position->y) { // Bottom/Top side touch
+			if (topMost == this) { // Bottom
+				entity->OnCollisionTouch(pair.second, Side::Bottom);
+			}
+			else { // Top
+				entity->OnCollisionTouch(pair.second, Side::Top);
+			}
 		}
 	}
 
