@@ -1,8 +1,16 @@
+#include <Windows.h>
+#include <cwchar>
 #include "stdafx.h"
+#include "Constants.h"
+#include "EntityManager.h"
+#include "NYTimer.h"
+#include "Time.h"
+#include "Camera.h"
+#include "GraphicRender.h"
 #include "Renderer.h"
 
 
-Renderer::Renderer(Camera* camera, int frameCap) {
+Renderer::Renderer(Camera* camera, int frameCap) : renders(new std::unordered_map<unsigned int, GraphicRender*>()) {
 	if (frameCap != 0) {
 		frameTime = 1.0f / frameCap * 1000;
 	} else {
@@ -94,4 +102,13 @@ int Renderer::getFrameCount() {
 
 float Renderer::getRenderTime() {
 	return renderTime;
+}
+
+unsigned int Renderer::RegisterRender(GraphicRender* graphicRender) {
+	(*renders)[currentUID] = graphicRender;
+	return currentUID++;
+}
+
+void Renderer::UnregisterRender(unsigned int uid) {
+	renders->erase(uid);
 }

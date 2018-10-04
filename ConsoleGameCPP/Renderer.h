@@ -1,13 +1,4 @@
 #pragma once
-
-#include <Windows.h>
-#include <cwchar>
-#include "Constants.h"
-#include "EntityManager.h"
-#include "NYTimer.h"
-#include "Time.h"
-#include "Camera.h"
-
 class Renderer {
 public:
 	Renderer(Camera* camera, int frameCap = 0);
@@ -19,6 +10,8 @@ public:
 	void ClearBuffer();
 	int getFrameCount();
 	float getRenderTime();
+	unsigned int RegisterRender(GraphicRender* graphicRender);
+	void UnregisterRender(unsigned int uid);
 private:
 	CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 	HANDLE outputHandle;
@@ -30,5 +23,7 @@ private:
 	float renderTime = 0;
 	int frameCount = 0;
 	Camera* camera;
+	std::unordered_map<unsigned int, GraphicRender*>* renders; // use unordered_map for uid
+	unsigned int currentUID = 0;
 };
 
