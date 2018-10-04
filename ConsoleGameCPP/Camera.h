@@ -3,6 +3,7 @@
 #include "Entity.h"
 class Camera : public Entity {
 public:
+	Entity* followed;
 	Camera(Vec2i pos, int width, int height);
 	~Camera();
 	Box getBoundingBox();

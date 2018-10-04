@@ -32,5 +32,7 @@ short Camera::getHeight() {
 }
 
 void Camera::Update() {
-	
+	if (followed != nullptr) {
+		position.x = followed->position.x - width / 2;
+	}
 }
