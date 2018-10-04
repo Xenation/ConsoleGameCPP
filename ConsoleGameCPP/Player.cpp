@@ -88,7 +88,12 @@ bool Player::getIsJumping() {
 }
 
 void Player::OnCollisionTouch(Collider* touched, Side side) {
-	if (side == Side::Bottom) {
+	
+	if (touched->layer == &CollisionLayer::Enemy)
+	{
+		// TODO : Kill player : reset via GameManager
+	}
+	else if (side == Side::Bottom) {
 		isFalling = false;
 		setYVelocity(0);
 		if (isJumping) {

@@ -173,6 +173,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextGraphic.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="TrapEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageASCII.cpp" />
@@ -203,6 +204,10 @@
     </ClCompile>
     <ClCompile Include="TextGraphic.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="TrapEntity.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="title.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

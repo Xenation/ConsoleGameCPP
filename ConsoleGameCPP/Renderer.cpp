@@ -22,7 +22,7 @@ Renderer::~Renderer() {
 }
 
 void Renderer::Initialize() {
-	HANDLE rHnd; /* read (input) handle */
+	// HANDLE rHnd; /* read (input) handle */
 
 	/* Window size coordinates, be sure to start index at zero! */
 	//SMALL_RECT windowSize = { 0, 0, 109, 39 };
@@ -34,10 +34,10 @@ void Renderer::Initialize() {
 
 	  /* initialize handles */
 	outputHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-	rHnd = GetStdHandle(STD_INPUT_HANDLE);
+	// rHnd = GetStdHandle(STD_INPUT_HANDLE);
 
 	// Set the console title
-	SetConsoleTitle(L"Super Stick Man Jumping Deluxe (With An Unused Sword)");
+	SetConsoleTitle(L"The stick woman with a sword (that she doesn't use)");
 
 	/* Set the window size */
 	SetConsoleWindowInfo(outputHandle, TRUE, &windowSize);

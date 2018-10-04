@@ -93,6 +93,9 @@
     <ClInclude Include="ImageASCII.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TrapEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -164,5 +167,13 @@
     <ClCompile Include="ImageASCII.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TrapEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="title.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
