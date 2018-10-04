@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "Camera.h"
 
 
@@ -9,10 +10,6 @@ Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, 
 
 
 Camera::~Camera() {
-}
-
-Box Camera::getBoundingBox() {
-	return { position, {width, height} };
 }
 
 Vec2i Camera::getPosition() {

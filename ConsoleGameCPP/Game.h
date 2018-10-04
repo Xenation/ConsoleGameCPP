@@ -1,4 +1,5 @@
 #pragma once
+class Renderer;
 class Game {
 public:
 	static Renderer* renderer;

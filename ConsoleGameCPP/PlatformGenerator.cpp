@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "PlatformGenerator.h"
 #include "Entity.h"
+#include "Collider.h"
 #include "CollisionLayer.h"
+#include "Graphic.h"
 #include "ArtGraphic.h"
-
-
 
 
 void PlatformGenerator::generateWorld(std::string nomFichierImage) {

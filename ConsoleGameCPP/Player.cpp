@@ -1,10 +1,15 @@
 #include "stdafx.h"
+
 #include "Player.h"
+
+#include "Constants.h"
 #include "PlayerState.h"
 #include "StandingState.h"
-#include <array>
-#include "Time.h"
 #include "PlatformGenerator.h"
+#include "Collider.h"
+#include "CollisionLayer.h"
+#include "Time.h"
+
 
 Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator) : Entity::Entity(graphic, pos, true) {
 	this->velocity = { 0, 0 }; // No velocity at first

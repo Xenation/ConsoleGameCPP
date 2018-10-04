@@ -1,7 +1,8 @@
 #include "stdafx.h"
+
 #include "EntityManager.h"
-#include <iostream>
-#include <iomanip>
+
+#include "Entity.h"
 #include "PhysicsManager.h"
 
 
@@ -11,8 +12,7 @@ EntityManager::EntityManager() {
 
 
 EntityManager::~EntityManager() {
-	delete(entities);
-	std::cout << "EntityManager Disposed!" << std::endl;
+	delete entities;
 }
 
 void EntityManager::RegisterEntity(Entity* entity) {
@@ -24,10 +24,4 @@ void EntityManager::UpdateAllEntities() {
 		entities->at(i)->Update();
 	}
 	PhysicsManager::getInstance().UpdateAllColliders();
-}
-
-void EntityManager::RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Camera* camera) {
-	for (unsigned int i = 0; i < entities->size(); i++) {
-		entities->at(i)->Render(buffer, camera);
-	}
 }

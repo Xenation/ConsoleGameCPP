@@ -1,11 +1,9 @@
 #pragma once
-
 #include <vector>
 #include <Windows.h>
-#include "Entity.h"
 #include "Constants.h"
-#include "Camera.h"
-
+class Entity;
+class Camera;
 class EntityManager {
 public:
 	static EntityManager& getInstance() {
@@ -14,7 +12,6 @@ public:
 	}
 	void RegisterEntity(Entity* entity);
 	void UpdateAllEntities();
-	void RenderAllEntities(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH], Camera* camera);
 private:
 	EntityManager();
 	~EntityManager();

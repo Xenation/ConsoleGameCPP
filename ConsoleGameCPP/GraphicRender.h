@@ -1,11 +1,15 @@
 #pragma once
+class Graphic;
+class Entity;
 class GraphicRender {
 public:
-	GraphicRender(Graphic* toRender);
+	Entity* entity;
+	GraphicRender(Entity* entity, Graphic* toRender);
 	~GraphicRender();
-	virtual void Render();
+	virtual void Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]);
 private:
 	Graphic* toRender;
+	unsigned int uid = 0;
 	GraphicRender();
 };
 
