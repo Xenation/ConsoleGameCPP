@@ -90,7 +90,7 @@
     <ClInclude Include="PlatformGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.h">
+    <ClInclude Include="ImageASCII.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -158,10 +158,10 @@
     <ClCompile Include="MathStructs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\PlatformGenerator.cpp">
+    <ClCompile Include="PlatformGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ImageASCII.cpp">
+    <ClCompile Include="ImageASCII.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
