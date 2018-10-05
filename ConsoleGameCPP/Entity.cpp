@@ -11,7 +11,7 @@
 Entity::Entity(Graphic* graphic, Vec2i pos, bool hasCollider) {
 	this->graphic = graphic;
 	if (graphic != nullptr) {
-		this->graphicRender = new GraphicRender(this, this->graphic);
+		this->graphicRender = new GraphicRender(this);
 	}
 	this->position = pos;
 	if (hasCollider) {
