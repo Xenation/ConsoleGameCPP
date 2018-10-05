@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GraphicRender.h" />
     <ClInclude Include="ImageASCII.h" />
     <ClInclude Include="PlatformGenerator.h" />
     <ClInclude Include="AnimationHolder.h" />
@@ -176,6 +178,9 @@
     <ClInclude Include="TrapEntity.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Graphic.cpp" />
+    <ClCompile Include="GraphicRender.cpp" />
     <ClCompile Include="ImageASCII.cpp" />
     <ClCompile Include="PlatformGenerator.cpp" />
     <ClCompile Include="AnimationHolder.cpp" />

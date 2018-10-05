@@ -1,5 +1,8 @@
 #include "stdafx.h"
+
 #include "PhysicsManager.h"
+
+#include "Collider.h"
 
 
 PhysicsManager::PhysicsManager() {

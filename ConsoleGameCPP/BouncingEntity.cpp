@@ -1,5 +1,12 @@
 #include "stdafx.h"
+
+#include "MathStructs.h"
+#include "Entity.h"
+
 #include "BouncingEntity.h"
+
+#include "Constants.h"
+#include "Graphic.h"
 
 
 BouncingEntity::BouncingEntity(Graphic* graphic, Vec2i pos) : Entity::Entity(graphic, pos, true) {

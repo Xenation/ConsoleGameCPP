@@ -1,9 +1,8 @@
 #pragma once
 #include <unordered_map>
 #include "MathStructs.h"
-#include "CollisionLayer.h"
-
 class Entity;
+struct CollisionLayer;
 class Collider {
 public:
 	Entity* entity;

@@ -1,5 +1,8 @@
 #include "stdafx.h"
+
 #include "Collider.h"
+
+#include "CollisionLayer.h"
 #include "PhysicsManager.h"
 #include "Entity.h"
 

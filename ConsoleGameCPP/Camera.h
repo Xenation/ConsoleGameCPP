@@ -6,7 +6,7 @@ public:
 	Entity* followed;
 	Camera(Vec2i pos, int width, int height);
 	~Camera();
-	Box getBoundingBox();
+	inline Box getBoundingBox() { return {position, {width, height}}; }
 	Vec2i getPosition();
 	Vec2i getSize();
 	short getWidth();

@@ -1,9 +1,10 @@
 #pragma once
-
-class PlatformGenerator;
-#include "Entity.h"
 #include <array>
-
+#include "MathStructs.h"
+#include "Entity.h"
+class Collider;
+class Graphic;
+class PlatformGenerator;
 class Player : public Entity {
 public:
 	Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator);

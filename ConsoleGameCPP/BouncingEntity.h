@@ -1,7 +1,4 @@
 #pragma once
-
-#include "Entity.h"
-
 class BouncingEntity : public Entity {
 public:
 	BouncingEntity(Graphic* graphic, Vec2i pos);
