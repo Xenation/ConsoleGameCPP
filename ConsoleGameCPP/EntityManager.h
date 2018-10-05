@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <unordered_map>
 #include <Windows.h>
 #include "Constants.h"
 class Entity;
@@ -10,13 +10,15 @@ public:
 		static EntityManager instance;
 		return instance;
 	}
-	void RegisterEntity(Entity* entity);
+	unsigned int RegisterEntity(Entity* entity);
+	void UnregisterEntity(unsigned int uid);
 	void UpdateAllEntities();
 private:
 	EntityManager();
 	~EntityManager();
 	EntityManager(EntityManager const&);	// Don't Implement
 	void operator=(EntityManager const&);	// Don't implement
-	std::vector<Entity*>* entities;
+	std::unordered_map<unsigned int, Entity*>* entities;
+	unsigned int currentUID = 0;
 };
 

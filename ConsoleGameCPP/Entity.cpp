@@ -17,11 +17,11 @@ Entity::Entity(Graphic* graphic, Vec2i pos, bool hasCollider) {
 	if (hasCollider) {
 		this->collider = new Collider(this, &this->position, { this->graphic->width, this->graphic->height });
 	}
-	EntityManager::getInstance().RegisterEntity(this);
+	uid = EntityManager::getInstance().RegisterEntity(this);
 }
 
-
 Entity::~Entity() {
+	EntityManager::getInstance().UnregisterEntity(uid);
 	delete collider;
 }
 

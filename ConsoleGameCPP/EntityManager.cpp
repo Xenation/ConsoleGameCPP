@@ -6,8 +6,8 @@
 #include "PhysicsManager.h"
 
 
-EntityManager::EntityManager() {
-	entities = new std::vector<Entity*>();
+EntityManager::EntityManager() : entities(new std::unordered_map<unsigned int, Entity*>()) {
+	
 }
 
 
@@ -15,13 +15,18 @@ EntityManager::~EntityManager() {
 	delete entities;
 }
 
-void EntityManager::RegisterEntity(Entity* entity) {
-	this->entities->push_back(entity);
+unsigned int EntityManager::RegisterEntity(Entity* entity) {
+	(*entities)[currentUID] = entity;
+	return currentUID++;
+}
+
+void EntityManager::UnregisterEntity(unsigned int uid) {
+	entities->erase(uid);
 }
 
 void EntityManager::UpdateAllEntities() {
-	for (unsigned int i = 0; i < entities->size(); i++) {
-		entities->at(i)->Update();
+	for (std::pair<unsigned int, Entity*> pair : *entities) {
+		pair.second->Update();
 	}
 	PhysicsManager::getInstance().UpdateAllColliders();
 }
