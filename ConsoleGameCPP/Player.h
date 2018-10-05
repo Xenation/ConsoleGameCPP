@@ -21,6 +21,7 @@ public:
 	bool getIsBlockedRight();
 	bool getIsBlockedLeft();
 	virtual void OnCollisionTouch(Collider* touched, Side side);
+	void setRespawnPosition(Vec2i newRespawnPosition);
 private:
 	Vec2i velocity;
 	class PlayerState* state;
@@ -30,7 +31,8 @@ private:
 	bool isBlockedRight;
 	bool isBlockedLeft;
 	float elapsedJumpTime;
-	PlatformGenerator* platformGenerator; // Useful to have the initial position
+	PlatformGenerator* platformGenerator;
+	Vec2i respawnPosition; // Used to teleport the player in case of death
 	//bool isStanding;
 	//bool isJumping;
 	//bool isRunning;

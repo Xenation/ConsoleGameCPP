@@ -175,5 +175,8 @@
     <Text Include="title.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="world.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
