@@ -21,7 +21,7 @@ Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator
 	isBlockedLeft = false;
 	elapsedJumpTime = 0.0f;
 	this->collider->layer = &CollisionLayer::Player;
-	this->platformGenerator = platformGenerator;
+	setRespawnPosition(platformGenerator->getPlayerInitialPosition());
 	//isStanding = true; // Starts standing
 	//isRunning = false;
 	//isJumping = false;
@@ -62,9 +62,8 @@ void Player::Update() {
 
 	// Kill check
 	if (position.y >= SCREEN_HEIGHT) {
-		Vec2i initialPosition = platformGenerator->getPlayerInitialPosition();
-		position.x = initialPosition.x;
-		position.y = initialPosition.y;
+		position.x = respawnPosition.x;
+		position.y = respawnPosition.y;
 	}
 
 	isFalling = true; // Falling by default, colliders will then change the status if there is something underneath the player
@@ -113,11 +112,16 @@ bool Player::getIsBlockedLeft() {
 	return isBlockedLeft;
 }
 
+void Player::setRespawnPosition(Vec2i newRespawnPosition) {
+	respawnPosition = newRespawnPosition;
+}
+
 void Player::OnCollisionTouch(Collider* touched, Side side) {
 	
 	if (touched->layer == &CollisionLayer::Enemy)
 	{
-		// TODO : Kill player : reset via GameManager
+		position.x = respawnPosition.x;
+		position.y = respawnPosition.y;
 	}
 	else if (side == Side::Bottom) {
 		isFalling = false;

@@ -213,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="title.txt" />
+    <Text Include="world.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
