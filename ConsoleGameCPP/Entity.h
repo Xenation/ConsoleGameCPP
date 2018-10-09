@@ -19,7 +19,7 @@ public:
 	virtual void OnCollisionTouch(Collider* touched, Side side);
 private:
 	Entity();
-	Entity(Entity& const);
-	void operator=(Entity& const);
+	Entity(Entity const&);
+	void operator=(Entity const&);
 };
 

@@ -5,6 +5,8 @@
 #include "CollisionLayer.h"
 #include "Graphic.h"
 #include "ArtGraphic.h"
+#include "GraphicRender.h"
+#include "RenderLayer.h"
 
 
 void PlatformGenerator::generateWorld(std::string nomFichierImage) {
@@ -66,6 +68,7 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 
 						Graphic* graph = new ArtGraphic(platformGraph, taillePlateform, 1);
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);
+						colliderEnt3->graphicRender->setLayer(RenderLayer::Decor);
 						colliderEnt3->collider->layer = &CollisionLayer::Decor;
 					}
 

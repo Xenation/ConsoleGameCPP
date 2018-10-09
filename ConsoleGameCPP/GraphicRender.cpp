@@ -1,8 +1,5 @@
 #include "stdafx.h"
 
-#include <Windows.h>
-#include "Constants.h"
-
 #include "GraphicRender.h"
 
 #include "MathStructs.h"
@@ -11,15 +8,15 @@
 #include "Renderer.h"
 #include "Camera.h"
 #include "Game.h"
+#include "RenderLayer.h"
 
 
-GraphicRender::GraphicRender(Entity* entity) : entity(entity) {
-	uid = Game::renderer->RegisterRender(this);
+GraphicRender::GraphicRender(Entity* entity, RenderLayer* layer) : entity(entity), layer(layer) {
+	uid = this->layer->Register(this);
 }
 
-
 GraphicRender::~GraphicRender() {
-	Game::renderer->UnregisterRender(uid);
+	layer->Unregister(uid);
 }
 
 void GraphicRender::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
@@ -33,4 +30,14 @@ void GraphicRender::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
 			buffer[screenPos.y + y][screenPos.x + x].Attributes = 0x0E;
 		}
 	}
+}
+
+void GraphicRender::setLayer(RenderLayer* layer) {
+	this->layer->Unregister(uid);
+	this->layer = layer;
+	uid = this->layer->Register(this);
+}
+
+RenderLayer* GraphicRender::getLayer() {
+	return layer;
 }

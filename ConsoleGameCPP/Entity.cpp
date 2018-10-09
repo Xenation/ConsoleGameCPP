@@ -4,6 +4,7 @@
 
 #include "Graphic.h"
 #include "GraphicRender.h"
+#include "RenderLayer.h"
 #include "Collider.h"
 #include "EntityManager.h"
 
@@ -11,7 +12,7 @@
 Entity::Entity(Graphic* graphic, Vec2i pos, bool hasCollider) {
 	this->graphic = graphic;
 	if (graphic != nullptr) {
-		this->graphicRender = new GraphicRender(this);
+		this->graphicRender = new GraphicRender(this, RenderLayer::Default);
 	}
 	this->position = pos;
 	if (hasCollider) {
