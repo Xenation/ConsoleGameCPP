@@ -11,10 +11,13 @@
 #include "Time.h"
 #include "Game.h"
 #include "SoundManager.h"
+#include "GraphicRender.h"
+#include "RenderLayer.h"
 
 
 Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator) : Entity::Entity(graphic, pos, true) {
 	this->velocity = { 0, 0 }; // No velocity at first
+	graphicRender->setLayer(RenderLayer::Player);
 	assignState(&PlayerState::standing);
 	isJumping = false;
 	isRising = false;

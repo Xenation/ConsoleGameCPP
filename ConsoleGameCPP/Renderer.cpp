@@ -6,11 +6,12 @@
 #include "Renderer.h"
 
 #include "GraphicRender.h"
+#include "RenderLayer.h"
 #include "Camera.h"
 #include "Time.h"
 
 
-Renderer::Renderer(Camera* camera, int frameCap) : renders(new std::unordered_map<unsigned int, GraphicRender*>()) {
+Renderer::Renderer(Camera* camera, int frameCap) {
 	if (frameCap != 0) {
 		frameTime = 1.0f / frameCap * 1000;
 	} else {
@@ -26,7 +27,7 @@ Renderer::Renderer(Camera* camera, int frameCap) : renders(new std::unordered_ma
 
 
 Renderer::~Renderer() {
-	delete renders;
+	
 }
 
 void Renderer::Initialize() {
@@ -73,8 +74,11 @@ void Renderer::ResetFrameTimer() {
 }
 
 void Renderer::Render() {
-	for (std::pair<unsigned int, GraphicRender*> pair : *renders) {
-		pair.second->Render(buffer);
+	for (int i = 0; i < RenderLayer::layerCount; i++) {
+		if (RenderLayer::layers[i] == nullptr) continue;
+		for (std::pair<unsigned int, GraphicRender*> renderPair : *RenderLayer::layers[i]->renders) {
+			renderPair.second->Render(buffer);
+		}
 	}
 	WriteConsoleOutput(outputHandle, (CHAR_INFO *) buffer, dwBufferSize, dwBufferCoord, &rectRegion);
 }
@@ -104,13 +108,4 @@ int Renderer::getFrameCount() {
 
 float Renderer::getRenderTime() {
 	return renderTime;
-}
-
-unsigned int Renderer::RegisterRender(GraphicRender* graphicRender) {
-	(*renders)[currentUID] = graphicRender;
-	return currentUID++;
-}
-
-void Renderer::UnregisterRender(unsigned int uid) {
-	renders->erase(uid);
 }
