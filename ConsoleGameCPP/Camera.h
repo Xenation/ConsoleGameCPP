@@ -11,6 +11,7 @@ public:
 	Vec2i getSize();
 	short getWidth();
 	short getHeight();
+	void Reset();
 	virtual void Update();
 private:
 	short width;

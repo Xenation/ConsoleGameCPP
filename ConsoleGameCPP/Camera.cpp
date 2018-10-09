@@ -31,6 +31,12 @@ short Camera::getHeight() {
 	return height;
 }
 
+void Camera::Reset()
+{
+	hasStarted = false;
+	position.x = 0;
+}
+
 void Camera::Update() {
 	//if (followed != nullptr) {
 	//	position.x = followed->position.x - width / 2;
@@ -40,9 +46,10 @@ void Camera::Update() {
 	{
 		elapsedTime += Time::getDeltaTime() / 1000;
 
-		if (elapsedTime >= 2.0f)
+		if (elapsedTime >= 0.7f)
 		{
 			hasStarted = true;
+			elapsedTime = 0.0f;
 		}
 	}
 	else

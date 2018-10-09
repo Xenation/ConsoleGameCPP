@@ -13,6 +13,8 @@
 #include "SoundManager.h"
 #include "GraphicRender.h"
 #include "RenderLayer.h"
+#include "Renderer.h"
+#include "Camera.h"
 
 
 Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator) : Entity::Entity(graphic, pos, true) {
@@ -66,10 +68,8 @@ void Player::Update() {
 	position.y += velocity.y;
 
 	// Kill check
-	if (position.y >= SCREEN_HEIGHT) {
-		position.x = respawnPosition.x;
-		position.y = respawnPosition.y;
-		Game::soundManager->RestartMusic();
+	if (position.y >= SCREEN_HEIGHT || position.x <= Game::renderer->getCamera()->getPosition().x) {
+		reset();
 	}
 
 	isFalling = true; // Falling by default, colliders will then change the status if there is something underneath the player
@@ -122,12 +122,19 @@ void Player::setRespawnPosition(Vec2i newRespawnPosition) {
 	respawnPosition = newRespawnPosition;
 }
 
+void Player::reset()
+{
+	position.x = respawnPosition.x;
+	position.y = respawnPosition.y;
+	Game::soundManager->RestartMusic();
+	Game::renderer->getCamera()->Reset();
+}
+
 void Player::OnCollisionTouch(Collider* touched, Side side) {
 	
 	if (touched->layer == &CollisionLayer::Enemy)
 	{
-		position.x = respawnPosition.x;
-		position.y = respawnPosition.y;
+		reset();
 	}
 	else if (side == Side::Bottom) {
 		isFalling = false;

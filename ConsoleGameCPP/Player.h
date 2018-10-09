@@ -23,6 +23,7 @@ public:
 	bool getIsBlockedLeft();
 	virtual void OnCollisionTouch(Collider* touched, Side side);
 	void setRespawnPosition(Vec2i newRespawnPosition);
+	void reset();
 private:
 	Vec2i velocity;
 	class PlayerState* state;
