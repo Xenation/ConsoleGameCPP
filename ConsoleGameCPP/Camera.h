@@ -15,4 +15,6 @@ public:
 private:
 	short width;
 	short height;
+	float elapsedTime;
+	bool hasStarted;
 };

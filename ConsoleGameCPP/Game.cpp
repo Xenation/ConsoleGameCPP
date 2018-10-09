@@ -3,3 +3,4 @@
 #include "Game.h"
 
 Renderer* Game::renderer = nullptr;
+SoundManager* Game::soundManager = nullptr;

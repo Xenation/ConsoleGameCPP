@@ -9,6 +9,8 @@
 #include "Collider.h"
 #include "CollisionLayer.h"
 #include "Time.h"
+#include "Game.h"
+#include "SoundManager.h"
 
 
 Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator) : Entity::Entity(graphic, pos, true) {
@@ -64,6 +66,7 @@ void Player::Update() {
 	if (position.y >= SCREEN_HEIGHT) {
 		position.x = respawnPosition.x;
 		position.y = respawnPosition.y;
+		Game::soundManager->RestartMusic();
 	}
 
 	isFalling = true; // Falling by default, colliders will then change the status if there is something underneath the player
