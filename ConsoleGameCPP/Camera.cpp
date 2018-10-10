@@ -2,6 +2,7 @@
 
 #include "Camera.h"
 #include "Time.h"
+#include "PlatformGenerator.h"
 
 
 Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, false) {
@@ -11,7 +12,6 @@ Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, 
 	hasStarted = false;
 	isFrozen = false;
 	elapsedFreezeTime = 0.0f;
-	totalFreezeTime = 0.0f;
 }
 
 
@@ -35,15 +35,22 @@ short Camera::getHeight() {
 }
 
 void Camera::reset() {
+	// Reset the initial timer
 	hasStarted = false;
+	// Reset the freeze settings
 	isFrozen = false;
 	elapsedFreezeTime = 0.0f;
+	initializeFreezePosition();
+	// Reset the camera position
 	position.x = 0;
 }
 
-void Camera::setFreeze(float totalTime) {
-	isFrozen = true;
-	totalFreezeTime = totalTime;
+void Camera::setPlatformGenerator(PlatformGenerator* platformGeneratorPointer) {
+	this->platformGenerator = platformGeneratorPointer;
+}
+
+void Camera::initializeFreezePosition() {
+	freezeXPosition = platformGenerator->getPlayerFreezeXPosition();
 }
 
 void Camera::Update() {
@@ -51,6 +58,15 @@ void Camera::Update() {
 	//	position.x = followed->position.x - width / 2;
 	//}
 
+	// Freeze check
+	if (position.x == freezeXPosition) {
+		{
+			isFrozen = true;
+			freezeXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
+		}
+	}
+
+	// Start timer before the Camera begins to move
 	if (!hasStarted) {
 		elapsedTime += Time::getDeltaTime() / 1000;
 
@@ -63,7 +79,7 @@ void Camera::Update() {
 	else if (isFrozen) {
 		elapsedFreezeTime += Time::getDeltaTime() / 1000;
 
-		if (elapsedFreezeTime >= totalFreezeTime)
+		if (elapsedFreezeTime >= 15.0f)
 		{
 			isFrozen = false;
 			elapsedFreezeTime = 0.0f;

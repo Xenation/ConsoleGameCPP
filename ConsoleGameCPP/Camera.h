@@ -1,4 +1,5 @@
 #pragma once
+class PlatformGenerator;
 #include "MathStructs.h"
 #include "Entity.h"
 class Camera : public Entity {
@@ -12,14 +13,16 @@ public:
 	short getWidth();
 	short getHeight();
 	void reset();
-	void setFreeze(float totalTime);
+	void setPlatformGenerator(PlatformGenerator* platformGeneratorPointer);
+	void initializeFreezePosition();
 	virtual void Update();
 private:
 	short width;
 	short height;
 	float elapsedTime;
 	bool hasStarted;
+	int freezeXPosition;
 	bool isFrozen;
 	float elapsedFreezeTime;
-	float totalFreezeTime;
+	PlatformGenerator* platformGenerator;
 };

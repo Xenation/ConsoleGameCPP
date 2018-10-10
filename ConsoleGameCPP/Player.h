@@ -35,7 +35,6 @@ private:
 	float elapsedJumpTime;
 	PlatformGenerator* platformGenerator;
 	Vec2i respawnPosition; // Used to teleport the player in case of death
-	int freezeXPosition; // Used to freeze the camera for a moment
 	//bool isStanding;
 	//bool isJumping;
 	//bool isRunning;
