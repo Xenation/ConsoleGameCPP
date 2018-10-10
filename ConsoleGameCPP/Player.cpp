@@ -29,6 +29,7 @@ Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator
 	elapsedJumpTime = 0.0f;
 	this->collider->layer = &CollisionLayer::Player;
 	setRespawnPosition(platformGenerator->getPlayerInitialPosition());
+	freezeXPosition = platformGenerator->getPlayerFreezeXPosition();
 	//isStanding = true; // Starts standing
 	//isRunning = false;
 	//isJumping = false;
@@ -70,6 +71,11 @@ void Player::Update() {
 	// Kill check
 	if (position.y >= SCREEN_HEIGHT || position.x <= Game::renderer->getCamera()->getPosition().x) {
 		reset();
+	}
+
+	// Freeze check	
+	if (position.x == freezeXPosition) {
+		Game::renderer->getCamera()->setFreeze(10.0f);
 	}
 
 	isFalling = true; // Falling by default, colliders will then change the status if there is something underneath the player
@@ -127,7 +133,7 @@ void Player::reset()
 	position.x = respawnPosition.x;
 	position.y = respawnPosition.y;
 	Game::soundManager->RestartMusic();
-	Game::renderer->getCamera()->Reset();
+	Game::renderer->getCamera()->reset();
 }
 
 void Player::OnCollisionTouch(Collider* touched, Side side) {

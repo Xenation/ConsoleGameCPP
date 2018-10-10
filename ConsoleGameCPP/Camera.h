@@ -11,11 +11,15 @@ public:
 	Vec2i getSize();
 	short getWidth();
 	short getHeight();
-	void Reset();
+	void reset();
+	void setFreeze(float totalTime);
 	virtual void Update();
 private:
 	short width;
 	short height;
 	float elapsedTime;
 	bool hasStarted;
+	bool isFrozen;
+	float elapsedFreezeTime;
+	float totalFreezeTime;
 };
