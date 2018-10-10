@@ -79,7 +79,7 @@ void Camera::Update() {
 	else if (isFrozen) {
 		elapsedFreezeTime += Time::getDeltaTime() / 1000;
 
-		if (elapsedFreezeTime >= 15.0f)
+		if (elapsedFreezeTime >= 8.0f)
 		{
 			isFrozen = false;
 			elapsedFreezeTime = 0.0f;
