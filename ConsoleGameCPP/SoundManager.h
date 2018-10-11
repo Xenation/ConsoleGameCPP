@@ -5,6 +5,6 @@ public:
 	SoundManager();
 	~SoundManager();
 	void StartMusic();
-	void RestartMusic();
+	void StopMusic();
 };
 

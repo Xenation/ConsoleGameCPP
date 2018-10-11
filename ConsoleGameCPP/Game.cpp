@@ -4,3 +4,4 @@
 
 Renderer* Game::renderer = nullptr;
 SoundManager* Game::soundManager = nullptr;
+bool Game::scrollStarted = false;

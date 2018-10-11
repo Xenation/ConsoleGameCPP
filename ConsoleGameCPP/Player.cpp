@@ -126,8 +126,9 @@ void Player::reset()
 {
 	position.x = respawnPosition.x;
 	position.y = respawnPosition.y;
-	Game::soundManager->RestartMusic();
+	Game::soundManager->StopMusic();
 	Game::renderer->getCamera()->reset();
+	Game::scrollStarted = false;
 }
 
 void Player::OnCollisionTouch(Collider* touched, Side side) {
