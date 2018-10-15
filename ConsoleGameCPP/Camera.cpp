@@ -67,25 +67,18 @@ void Camera::Update() {
 	}
 
 	// Start timer before the Camera begins to move
-	if (!hasStarted) {
-		elapsedTime += Time::getDeltaTime() / 1000;
+	if (hasStarted) {
+		if (isFrozen) {
+			elapsedFreezeTime += Time::getDeltaTime() / 1000;
 
-		if (elapsedTime >= 0.7f)
-		{
-			hasStarted = true;
-			elapsedTime = 0.0f;
+			if (elapsedFreezeTime >= 8.0f)
+			{
+				isFrozen = false;
+				elapsedFreezeTime = 0.0f;
+			}
 		}
-	}
-	else if (isFrozen) {
-		elapsedFreezeTime += Time::getDeltaTime() / 1000;
-
-		if (elapsedFreezeTime >= 8.0f)
-		{
-			isFrozen = false;
-			elapsedFreezeTime = 0.0f;
+		else {
+			position.x += 1;
 		}
-	}
-	else {
-		position.x += 1;
 	}
 }

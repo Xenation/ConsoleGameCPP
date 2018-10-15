@@ -6,6 +6,7 @@ class Game {
 public:
 	static Renderer* renderer;
 	static SoundManager* soundManager;
+	static bool scrollStarted;
 private:
 	Game();
 	~Game();
