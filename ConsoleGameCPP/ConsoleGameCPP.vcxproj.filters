@@ -202,7 +202,10 @@
     <Text Include="title.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="world.txt">
+    <Text Include="world_test.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="world_final.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

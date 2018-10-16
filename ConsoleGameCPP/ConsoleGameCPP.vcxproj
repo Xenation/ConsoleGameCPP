@@ -220,7 +220,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="title.txt" />
-    <Text Include="world.txt" />
+    <Text Include="world_final.txt" />
+    <Text Include="world_test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
