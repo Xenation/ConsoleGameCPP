@@ -4,7 +4,7 @@
 
 SoundManager::SoundManager()
 {
-	mciSendString(L"open music.wav type waveaudio alias music", nullptr, 0, nullptr);
+	mciSendString(L"open D:\\music.wav type waveaudio alias music", nullptr, 0, nullptr);
 }
 
 
