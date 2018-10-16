@@ -41,7 +41,7 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 					playerInitialPosition = { j, i };
 				}
 
-		/****** RECUPERATION DE LA POSITION DU JOUEUR ******/
+		/****** RECUPERATION DE LA POSITION DU FREEZE CAMERA ******/
 
 				if (charImg[i][j] == FREEZE_ASCII_CODE) {
 					playerFreezeXPosition = j;
@@ -85,6 +85,7 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 						colliderEnt3->graphicRender->setLayer(RenderLayer::Decor);
 						colliderEnt3->collider->layer = &CollisionLayer::Enemy;
 						trapEnConstruction = false;
+						// TODO : en faire une trap entity
 
 					}
 					
