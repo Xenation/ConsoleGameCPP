@@ -46,7 +46,7 @@ void Camera::reset() {
 	initializeSpeedUpPosition();
 	// Reset the camera position
 	position.x = 0;
-	speedFactor = 1;
+	setCameraAndPlayerSpeedFactor(1);
 }
 
 void Camera::setPlatformGenerator(PlatformGenerator* platformGeneratorPointer) {
@@ -74,10 +74,7 @@ void Camera::Update() {
 		freezeXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 	else if (position.x == speedUpXPosition) {
-		speedFactor = 2;
-		Player* player = dynamic_cast<Player*>(followed);
-		player->setSpeedFactor(speedFactor);
-		player->updateSpeed();
+		setCameraAndPlayerSpeedFactor(2);
 		speedUpXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 
@@ -104,4 +101,11 @@ void Camera::setSpeedFactor(int factor) {
 
 int Camera::getSpeedFactor() {
 	return speedFactor;
+}
+
+void Camera::setCameraAndPlayerSpeedFactor(int factor) {
+	speedFactor = factor;
+	Player* player = dynamic_cast<Player*>(followed);
+	player->setSpeedFactor(speedFactor);
+	player->updateSpeed();
 }
