@@ -56,3 +56,7 @@ void StandingState::handleInput(Player& player, const std::array<bool, 4> &input
 void StandingState::update(Player& player) {
 	// No update needed for the standing state
 }
+
+void StandingState::updateSpeed (Player& player) {
+	// No update needed for the standing state
+}

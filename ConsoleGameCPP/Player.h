@@ -24,6 +24,9 @@ public:
 	virtual void OnCollisionTouch(Collider* touched, Side side);
 	void setRespawnPosition(Vec2i newRespawnPosition);
 	void reset();
+	void setSpeedFactor(int factor);
+	int getSpeedFactor();
+	void updateSpeed();
 private:
 	Vec2i velocity;
 	class PlayerState* state;
@@ -35,6 +38,7 @@ private:
 	float elapsedJumpTime;
 	PlatformGenerator* platformGenerator;
 	Vec2i respawnPosition; // Used to teleport the player in case of death
+	int speedFactor;
 	//bool isStanding;
 	//bool isJumping;
 	//bool isRunning;

@@ -28,7 +28,7 @@ JumpingState::~JumpingState()
 //}
 
 void JumpingState::enter(Player& player) {
-	player.setYVelocity(-1);
+	updateSpeed(player);
 	player.setJumpingAndRising(true); // Launches jumping animation
 }
 
@@ -45,4 +45,10 @@ void JumpingState::handleInput(class Player& player, const std::array<bool, 4> &
 
 void JumpingState::update(Player& player) {
 
+}
+
+void JumpingState::updateSpeed(Player& player) {
+	// player.setYVelocity(-1 * player.getSpeedFactor());
+	// TODO : check if we need to multiply speed for jump (collision troubles...)
+	player.setYVelocity(-1);
 }

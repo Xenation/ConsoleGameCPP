@@ -47,6 +47,12 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 					playerFreezeXPosition = j;
 				}
 
+		/****** RECUPERATION DE LA POSITION DU SPEED UP ******/
+
+				if (charImg[i][j] == SPEEDUP_ASCII_CODE) {
+					playerSpeedUpPosition = j;
+				}
+
 
 		/****** GENERATION DES PLATEFORMES ******/
 
@@ -122,4 +128,8 @@ Vec2i PlatformGenerator::getPlayerInitialPosition() {
 
 int PlatformGenerator::getPlayerFreezeXPosition() {
 	return playerFreezeXPosition;
+}
+
+int PlatformGenerator::getPlayerSpeedUpXPosition() {
+	return playerSpeedUpPosition;
 }

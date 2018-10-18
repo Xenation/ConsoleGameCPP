@@ -35,7 +35,7 @@ RunningRightState::~RunningRightState()
 //}
 
 void RunningRightState::enter(Player& player) {
-	player.setXVelocity(1);
+	updateSpeed(player);
 	elapsedRunningTime = 0.0f;
 	AnimationHolder::instance().setRunningRight1(player);
 }
@@ -61,17 +61,21 @@ void RunningRightState::handleInput(Player& player, const std::array<bool, 4> &i
 void RunningRightState::update(Player& player) {
 	elapsedRunningTime += Time::getInstance().deltaTime / 1000;
 
-	if (elapsedRunningTime >= 0.4f) {
+	if (elapsedRunningTime >= 0.4f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningRight1(player);
 		elapsedRunningTime = 0.0f;
 	}
-	else if (elapsedRunningTime >= 0.3f) {
+	else if (elapsedRunningTime >= 0.3f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningRight4(player);
 	}
-	else if (elapsedRunningTime >= 0.2f) {
+	else if (elapsedRunningTime >= 0.2f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningRight3(player);
 	}
-	else if (elapsedRunningTime >= 0.1f) {
+	else if (elapsedRunningTime >= 0.1f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningRight2(player);
 	}
+}
+
+void RunningRightState::updateSpeed(Player& player) {
+	player.setXVelocity(1 * player.getSpeedFactor());
 }

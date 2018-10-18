@@ -16,13 +16,18 @@ public:
 	void reset();
 	void setPlatformGenerator(PlatformGenerator* platformGeneratorPointer);
 	void initializeFreezePosition();
+	void initializeSpeedUpPosition();
 	virtual void Update();
+	void setSpeedFactor(int factor);
+	int getSpeedFactor();
 private:
 	short width;
 	short height;
 	float elapsedTime;
 	int freezeXPosition;
+	int speedUpXPosition;
 	bool isFrozen;
 	float elapsedFreezeTime;
+	int speedFactor;
 	PlatformGenerator* platformGenerator;
 };

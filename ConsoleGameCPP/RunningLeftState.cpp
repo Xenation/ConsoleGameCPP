@@ -35,7 +35,7 @@ RunningLeftState::~RunningLeftState()
 //}
 
 void RunningLeftState::enter(Player& player) {
-	player.setXVelocity(-1);
+	updateSpeed(player);
 	elapsedRunningLeftTime = 0.0f;
 	AnimationHolder::instance().setRunningLeft1(player);
 }
@@ -62,17 +62,21 @@ void RunningLeftState::handleInput(Player& player, const std::array<bool, 4> &in
 void RunningLeftState::update(Player& player) {
 	elapsedRunningLeftTime += Time::getInstance().deltaTime / 1000;
 
-	if (elapsedRunningLeftTime >= 0.4f) {
+	if (elapsedRunningLeftTime >= 0.4f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningLeft1(player);
 		elapsedRunningLeftTime = 0.0f;
 	}
-	else if (elapsedRunningLeftTime >= 0.3f) {
+	else if (elapsedRunningLeftTime >= 0.3f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningLeft4(player);
 	}
-	else if (elapsedRunningLeftTime >= 0.2f) {
+	else if (elapsedRunningLeftTime >= 0.2f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningLeft3(player);
 	}
-	else if (elapsedRunningLeftTime >= 0.1f) {
+	else if (elapsedRunningLeftTime >= 0.1f / player.getSpeedFactor()) {
 		AnimationHolder::instance().setRunningLeft2(player);
 	}
+}
+
+void RunningLeftState::updateSpeed(Player& player) {
+	player.setXVelocity(-1 * player.getSpeedFactor());
 }

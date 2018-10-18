@@ -29,6 +29,7 @@ Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator
 	elapsedJumpTime = 0.0f;
 	this->collider->layer = &CollisionLayer::Player;
 	setRespawnPosition(platformGenerator->getPlayerInitialPosition());
+	speedFactor = 1;
 	//isStanding = true; // Starts standing
 	//isRunning = false;
 	//isJumping = false;
@@ -40,11 +41,13 @@ Player::~Player() {
 }
 
 void Player::Update() {
-	
+
 	if (isJumping) {
 		if (isRising) {
 			elapsedJumpTime += Time::getInstance().deltaTime / 1000;
 
+			// if (elapsedJumpTime >= 0.3f / speedFactor)
+			// TODO : check if we need to multiply speed for jump (collision troubles...)
 			if (elapsedJumpTime >= 0.3f) {
 				setYVelocity(1);
 				isRising = false;
@@ -58,6 +61,8 @@ void Player::Update() {
 	}
 	else {
 		if (isFalling) {
+			// setYVelocity(1 * speedFactor);
+			// TODO : check if we need to multiply speed for jump (collision troubles...)
 			setYVelocity(1);
 		}
 		elapsedJumpTime = 0.0f; // Resets the jump timer in case the full jump is interrupted by a platform
@@ -157,4 +162,16 @@ void Player::OnCollisionTouch(Collider* touched, Side side) {
 	else if (side == Side::Top) {
 		setYVelocity(-this->velocity.y);
 	}
+}
+
+void Player::setSpeedFactor(int factor) {
+	speedFactor = factor;
+}
+
+int Player::getSpeedFactor() {
+	return speedFactor;
+}
+
+void Player::updateSpeed() {
+	state->updateSpeed(*this);
 }

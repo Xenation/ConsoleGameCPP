@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Time.h"
 #include "PlatformGenerator.h"
+#include "Player.h"
 
 
 Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, false) {
@@ -12,6 +13,7 @@ Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, 
 	hasStarted = false;
 	isFrozen = false;
 	elapsedFreezeTime = 0.0f;
+	speedFactor = 1;
 }
 
 
@@ -41,8 +43,10 @@ void Camera::reset() {
 	isFrozen = false;
 	elapsedFreezeTime = 0.0f;
 	initializeFreezePosition();
+	initializeSpeedUpPosition();
 	// Reset the camera position
 	position.x = 0;
+	speedFactor = 1;
 }
 
 void Camera::setPlatformGenerator(PlatformGenerator* platformGeneratorPointer) {
@@ -53,17 +57,28 @@ void Camera::initializeFreezePosition() {
 	freezeXPosition = platformGenerator->getPlayerFreezeXPosition();
 }
 
+void Camera::initializeSpeedUpPosition() {
+	speedUpXPosition = platformGenerator->getPlayerSpeedUpXPosition();
+}
+
 void Camera::Update() {
 	//if (followed != nullptr) {
 	//	position.x = followed->position.x - width / 2;
 	//}
 
 	// Freeze check
+	// TODO : Change -1
+	// TODO : Have a ref to the player ? We need to change the player speed when we speed up (instead of changing the speed on "enter") : new state function to call ? event ?
 	if (position.x == freezeXPosition) {
-		{
-			isFrozen = true;
-			freezeXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
-		}
+		isFrozen = true;
+		freezeXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
+	}
+	else if (position.x == speedUpXPosition) {
+		speedFactor = 2;
+		Player* player = dynamic_cast<Player*>(followed);
+		player->setSpeedFactor(speedFactor);
+		player->updateSpeed();
+		speedUpXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 
 	// Start timer before the Camera begins to move
@@ -78,7 +93,15 @@ void Camera::Update() {
 			}
 		}
 		else {
-			position.x += 1;
+			position.x += 1 * speedFactor;
 		}
 	}
+}
+
+void Camera::setSpeedFactor(int factor) {
+	speedFactor = factor;
+}
+
+int Camera::getSpeedFactor() {
+	return speedFactor;
 }
