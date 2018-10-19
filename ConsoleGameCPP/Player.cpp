@@ -28,6 +28,7 @@ Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator
 	isBlockedLeft = false;
 	elapsedJumpTime = 0.0f;
 	this->collider->layer = &CollisionLayer::Player;
+	this->collider->isStatic = false;
 	setRespawnPosition(platformGenerator->getPlayerInitialPosition());
 	speedFactor = 1;
 	//isStanding = true; // Starts standing

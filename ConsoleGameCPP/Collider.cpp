@@ -20,7 +20,8 @@ Collider::~Collider() {
 }
 
 void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
-	
+	if (isStatic) return;
+
 	for (std::pair<unsigned int, Collider*> pair : (*colliders)) {
 		if (pair.second == this || !((1 << pair.second->layer->layerIndex) & this->layer->layerMask)) continue;
 

@@ -10,6 +10,7 @@ public:
 	Collider(Entity* entity, Vec2i* pos, Vec2i size);
 	~Collider();
 	void Update(std::unordered_map<unsigned int, Collider*>* colliders);
+	bool isStatic = true;
 private:
 	unsigned int uid;
 	Vec2i* position;
