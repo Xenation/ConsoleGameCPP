@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SoundManager.h"
 #include "Windows.h"
+#pragma comment( lib, "winmm.lib" )
 
 SoundManager::SoundManager()
 {
