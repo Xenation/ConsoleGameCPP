@@ -18,8 +18,9 @@ public:
 	void initializeFreezePosition();
 	void initializeSpeedUpPosition();
 	virtual void Update();
-	void setSpeedFactor(int factor);
+	void setSpeedFactor(int factor); // TODO : Useless ? Check all other useless methods
 	int getSpeedFactor();
+	void setCameraAndPlayerSpeedFactor(int factor);
 private:
 	short width;
 	short height;
