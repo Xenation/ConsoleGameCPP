@@ -7,5 +7,6 @@ public:
 	static const CollisionLayer Decor;
 	static const CollisionLayer Player;
 	static const CollisionLayer Enemy;
+	static const CollisionLayer Trap;
 };
 

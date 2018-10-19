@@ -138,7 +138,7 @@ void Player::reset()
 
 void Player::OnCollisionTouch(Collider* touched, Side side) {
 	
-	if (touched->layer == &CollisionLayer::Enemy)
+	if (touched->layer == &CollisionLayer::Trap)
 	{
 		reset();
 	}
