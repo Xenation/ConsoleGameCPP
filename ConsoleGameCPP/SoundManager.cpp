@@ -5,6 +5,9 @@
 SoundManager::SoundManager()
 {
 	mciSendString(L"open music.wav type waveaudio alias music", nullptr, 0, nullptr);
+	// Immedatlely play and stop to avoid a stutter during the first play
+	StartMusic();
+	StopMusic();
 }
 
 

@@ -17,9 +17,8 @@ public:
 	void setPlatformGenerator(PlatformGenerator* platformGeneratorPointer);
 	void initializeFreezePosition();
 	void initializeSpeedUpPosition();
+	void initializeEndPosition();
 	virtual void Update();
-	void setSpeedFactor(int factor); // TODO : Useless ? Check all other useless methods
-	int getSpeedFactor();
 	void setCameraAndPlayerSpeedFactor(int factor);
 private:
 	short width;
@@ -27,6 +26,7 @@ private:
 	float elapsedTime;
 	int freezeXPosition;
 	int speedUpXPosition;
+	int endXPosition;
 	bool isFrozen;
 	float elapsedFreezeTime;
 	int speedFactor;
