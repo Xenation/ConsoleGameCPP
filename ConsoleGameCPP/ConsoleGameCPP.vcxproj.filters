@@ -208,5 +208,8 @@
     <Text Include="world_final.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="end.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

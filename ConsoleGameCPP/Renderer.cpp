@@ -46,7 +46,7 @@ void Renderer::Initialize() {
 	// rHnd = GetStdHandle(STD_INPUT_HANDLE);
 
 	// Set the console title
-	SetConsoleTitle(L"The stick woman with a sword (that she doesn't use)");
+	SetConsoleTitle(L"Stick of the tiger");
 
 	/* Set the window size */
 	SetConsoleWindowInfo(outputHandle, TRUE, &windowSize);
@@ -57,6 +57,11 @@ void Renderer::Initialize() {
 	HWND x = GetConsoleWindow();
 	ShowScrollBar(x, SB_BOTH, FALSE);
 
+	// Hide cursor
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(outputHandle, &cursorInfo);
+	cursorInfo.bVisible = false; // set the cursor visibility
+	SetConsoleCursorInfo(outputHandle, &cursorInfo);
 
 	//outputHandle = (HANDLE) GetStdHandle(STD_OUTPUT_HANDLE);
 

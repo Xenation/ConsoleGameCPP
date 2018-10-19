@@ -219,6 +219,7 @@
     <ClCompile Include="TrapEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="end.txt" />
     <Text Include="title.txt" />
     <Text Include="world_final.txt" />
     <Text Include="world_test.txt" />

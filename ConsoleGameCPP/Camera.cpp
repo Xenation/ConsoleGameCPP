@@ -61,6 +61,10 @@ void Camera::initializeSpeedUpPosition() {
 	speedUpXPosition = platformGenerator->getPlayerSpeedUpXPosition();
 }
 
+void Camera::initializeEndPosition() {
+	//endXPosition = platformGenerator->getEndXPosition();
+}
+
 void Camera::Update() {
 	//if (followed != nullptr) {
 	//	position.x = followed->position.x - width / 2;
@@ -76,6 +80,9 @@ void Camera::Update() {
 	else if (position.x == speedUpXPosition) {
 		setCameraAndPlayerSpeedFactor(2);
 		speedUpXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
+	}
+	else if (position.x >= endXPosition) {
+		
 	}
 
 	// Start timer before the Camera begins to move
@@ -93,14 +100,6 @@ void Camera::Update() {
 			position.x += 1 * speedFactor;
 		}
 	}
-}
-
-void Camera::setSpeedFactor(int factor) {
-	speedFactor = factor;
-}
-
-int Camera::getSpeedFactor() {
-	return speedFactor;
 }
 
 void Camera::setCameraAndPlayerSpeedFactor(int factor) {
