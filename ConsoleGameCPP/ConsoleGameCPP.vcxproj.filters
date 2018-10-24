@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Raycast">
+      <UniqueIdentifier>{082931c7-6be2-4f83-918d-a6959fc52a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Raycast">
+      <UniqueIdentifier>{52e76c9b-2497-4ea4-8d3d-f72a2b262bb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -108,6 +114,12 @@
     <ClInclude Include="SoundManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConsoleColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RaycastRenderer.h">
+      <Filter>Header Files\Raycast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -196,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RaycastRenderer.cpp">
+      <Filter>Source Files\Raycast</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

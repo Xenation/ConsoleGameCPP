@@ -27,15 +27,15 @@ public:
 	AnimationHolder();
 	~AnimationHolder();
 private:
-	const char** playerStanding;
-	const char** playerRunningRight1;
-	const char** playerRunningRight2;
-	const char** playerRunningRight3;
-	const char** playerRunningRight4;
-	const char** playerRunningLeft1;
-	const char** playerRunningLeft2;
-	const char** playerRunningLeft3;
-	const char** playerRunningLeft4;
+	const wchar_t** playerStanding;
+	const wchar_t** playerRunningRight1;
+	const wchar_t** playerRunningRight2;
+	const wchar_t** playerRunningRight3;
+	const wchar_t** playerRunningRight4;
+	const wchar_t** playerRunningLeft1;
+	const wchar_t** playerRunningLeft2;
+	const wchar_t** playerRunningLeft3;
+	const wchar_t** playerRunningLeft4;
 
 	Graphic* playerStandingGraph;
 	Graphic* playerRunningRightGraph1;

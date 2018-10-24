@@ -66,14 +66,15 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 				} else {
 
 					// on créé donc l'entity de celle-ci
-					char** platformGraph = new char*[1];
-					platformGraph[0] = new char[taillePlateform];
+					wchar_t** platformGraph = new wchar_t*[1];
+					platformGraph[0] = new wchar_t[taillePlateform];
 
 					// si c'est une plateforme, on génère une plateforme
 					if (enConstruction) {
 						std::fill_n(platformGraph[0], taillePlateform, PLATFORM_ASCII_REPRESENTATION);
 
 						Graphic* graph = new ArtGraphic(platformGraph, taillePlateform, 1);
+						graph->backgroundColor = ConsoleColor::BRIGHT_BLACK;
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);
 						colliderEnt3->graphicRender->setLayer(RenderLayer::Decor);
 						colliderEnt3->collider->layer = &CollisionLayer::Decor;

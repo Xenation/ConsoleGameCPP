@@ -11,16 +11,18 @@ TextGraphic::TextGraphic() {
 	width = 0;
 	contents = nullptr;
 	height = 1;
+	foregroundColor = ConsoleColor::WHITE;
 }
 
 TextGraphic::TextGraphic(const char* text) {
 	width = strlen(text);
-	contents = new char*[1];
-	contents[0] = new char[width];
+	contents = new wchar_t*[1];
+	contents[0] = new wchar_t[width];
 	height = 1;
 	for (int i = 0; i < width; i++) {
 		this->contents[0][i] = text[i];
 	}
+	foregroundColor = ConsoleColor::WHITE;
 }
 
 
@@ -36,9 +38,9 @@ void TextGraphic::setText(const char* text) {
 	}
 	width = strlen(text);
 	if (contents == nullptr) {
-		contents = new char*[1];
+		contents = new wchar_t*[1];
 	}
-	contents[0] = new char[width];
+	contents[0] = new wchar_t[width];
 	height = 1;
 	for (int i = 0; i < width; i++) {
 		this->contents[0][i] = text[i];

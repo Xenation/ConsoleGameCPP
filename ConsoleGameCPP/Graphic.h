@@ -2,12 +2,15 @@
 #include <Windows.h>
 #include "MathStructs.h"
 #include "Constants.h"
+#include "ConsoleColor.h"
 class Camera;
 class Graphic {
 public:
 	int width = 0;
 	int height = 0;
-	char** contents;
+	wchar_t** contents;
+	ConsoleColor foregroundColor;
+	ConsoleColor backgroundColor;
 protected:
 	Graphic();
 	~Graphic();

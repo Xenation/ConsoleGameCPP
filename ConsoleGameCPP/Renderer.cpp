@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "Time.h"
 
+static UINT oldConsoleCP;
 
 Renderer::Renderer(Camera* camera, int frameCap) {
 	if (frameCap != 0) {
@@ -27,7 +28,7 @@ Renderer::Renderer(Camera* camera, int frameCap) {
 
 
 Renderer::~Renderer() {
-	
+	SetConsoleCP(oldConsoleCP);
 }
 
 void Renderer::Initialize() {
@@ -50,6 +51,9 @@ void Renderer::Initialize() {
 
 	/* Set the window size */
 	SetConsoleWindowInfo(outputHandle, TRUE, &windowSize);
+
+	oldConsoleCP = GetConsoleOutputCP();
+	SetConsoleOutputCP(CP_UTF8);
 
 	/* Set the screen's buffer size */
 	SetConsoleScreenBufferSize(outputHandle, bufferSize);

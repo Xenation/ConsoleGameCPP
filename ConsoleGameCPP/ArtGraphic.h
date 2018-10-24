@@ -3,8 +3,8 @@
 class Camera;
 class ArtGraphic : public Graphic {
 public:
-	ArtGraphic(const char** cont, int width, int height);
-	ArtGraphic(char** cont, int width, int height);
+	ArtGraphic(const wchar_t** cont, int width, int height);
+	ArtGraphic(wchar_t** cont, int width, int height);
 	~ArtGraphic();
 };
 
