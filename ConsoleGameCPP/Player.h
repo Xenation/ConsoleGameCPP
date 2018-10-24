@@ -12,7 +12,7 @@ public:
 	virtual void Update();
 	//virtual void handleInput(int input);
 	virtual void enter();
-	virtual void handleInput(const std::array<bool, 4> &input);
+	virtual void handleInput(const std::array<bool, 7> &input);
 	void assignState(class PlayerState* state);
 	void addVelocity(Vec2i velocity);
 	void setXVelocity(int xVelocity);

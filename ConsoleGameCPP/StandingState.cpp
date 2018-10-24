@@ -38,16 +38,16 @@ void StandingState::enter(Player& player) {
 	AnimationHolder::instance().setStanding(player);
 }
 
-void StandingState::handleInput(Player& player, const std::array<bool, 4> &input) {
-	if (!player.getIsJumping() && input[3]) { // space key : jumping
+void StandingState::handleInput(Player& player, const std::array<bool, 7> &input) {
+	if (input[SPACE] && !player.getIsJumping()) { // Jumping
 		player.assignState(&PlayerState::jumping);
 		player.enter();
 	}
-	else if (input[0] && !player.getIsBlockedRight()) { // d key : running right
+	else if ((input[D] || input[RIGHT_ARROW]) && !player.getIsBlockedRight()) { // Running right
 		player.assignState(&PlayerState::runningRight);
 		player.enter();
 	}
-	else if ((input[1] || input[2]) && !player.getIsBlockedLeft()) { // q key (or a key for qwerty keyboards) : running left
+	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.getIsBlockedLeft()) { // Running left
 		player.assignState(&PlayerState::runningLeft);
 		player.enter();
 	}

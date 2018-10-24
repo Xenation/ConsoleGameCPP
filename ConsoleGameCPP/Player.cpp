@@ -87,7 +87,7 @@ void Player::enter() {
 	state->enter(*this);
 }
 
-void Player::handleInput(const std::array<bool, 4> &input) {
+void Player::handleInput(const std::array<bool, 7> &input) {
 	state->handleInput(*this, input);
 }
 

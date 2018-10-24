@@ -62,7 +62,7 @@ void Camera::initializeSpeedUpPosition() {
 }
 
 void Camera::initializeEndPosition() {
-	//endXPosition = platformGenerator->getEndXPosition();
+	endXPosition = platformGenerator->getPlayerEndXPosition();
 }
 
 void Camera::Update() {
@@ -82,7 +82,12 @@ void Camera::Update() {
 		speedUpXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 	else if (position.x >= endXPosition) {
-		
+		// Generate title screen
+		ImageASCII *img = new ImageASCII();
+		if (img->genererImage("end_final.txt")) {
+			img->parcourirTableau(img->getImage());
+		}
+		endXPosition = 99999; // TODO : Change this
 	}
 
 	// Start timer before the Camera begins to move

@@ -223,7 +223,7 @@
     <Text Include="world_final.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="end.txt">
+    <Text Include="end_final.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

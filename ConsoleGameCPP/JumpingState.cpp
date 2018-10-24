@@ -32,12 +32,12 @@ void JumpingState::enter(Player& player) {
 	player.setJumpingAndRising(true); // Launches jumping animation
 }
 
-void JumpingState::handleInput(class Player& player, const std::array<bool, 4> &input) {
-	if (input[0] && !player.getIsBlockedRight()) { // d key : running right
+void JumpingState::handleInput(class Player& player, const std::array<bool, 7> &input) {
+	if ((input[D] || input[RIGHT_ARROW]) && !player.getIsBlockedRight()) { // Running right
 		player.assignState(&PlayerState::runningRight);
 		player.enter();
 	}
-	else if ((input[1] || input[2]) && !player.getIsBlockedLeft()) { // q key (or a key for qwerty keyboards) : running left
+	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.getIsBlockedLeft()) { // Running left
 		player.assignState(&PlayerState::runningLeft);
 		player.enter();
 	}

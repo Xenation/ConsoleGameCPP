@@ -14,15 +14,18 @@ public :
 	const char SPEEDUP_ASCII_CODE = 'S';
 	const char TRAP_ASCII_CODE = 'x';
 	const wchar_t TRAP_ASCII_REPRESENTATION = L'X';
+	const char END_ASCII_CODE = 'E';
 
 	void generateWorld(std::string nomFichierImage);
 	Vec2i getPlayerInitialPosition();
 	int getPlayerFreezeXPosition();
 	int getPlayerSpeedUpXPosition();
+	int getPlayerEndXPosition();
 
 private :
 	Vec2i playerInitialPosition;
 	int playerFreezeXPosition;
 	int playerSpeedUpPosition;
+	int playerEndPosition;
 
 };

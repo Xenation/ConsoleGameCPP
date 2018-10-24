@@ -53,6 +53,12 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 					playerSpeedUpPosition = j;
 				}
 
+		/****** RECUPERATION DE LA POSITION DE LA FIN ******/
+
+				if (charImg[i][j] == END_ASCII_CODE) {
+					playerEndPosition = j;
+				}
+
 
 		/****** GENERATION DES PLATEFORMES ******/
 
@@ -133,4 +139,8 @@ int PlatformGenerator::getPlayerFreezeXPosition() {
 
 int PlatformGenerator::getPlayerSpeedUpXPosition() {
 	return playerSpeedUpPosition;
+}
+
+int PlatformGenerator::getPlayerEndXPosition() {
+	return playerEndPosition;
 }
