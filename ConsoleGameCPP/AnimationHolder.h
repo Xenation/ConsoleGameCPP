@@ -3,6 +3,11 @@
 class Graphic;
 class Entity;
 
+/*
+===============================================================================
+Class that holds all the animations of the character
+===============================================================================
+*/
 class AnimationHolder
 {
 public:
@@ -13,40 +18,23 @@ public:
 		static AnimationHolder *instance = new AnimationHolder();
 		return *instance;
 	}
-	Graphic* getPlayerStandingGraph();
-	void setStanding(Entity& entity);
-	void setRunningRight1(Entity& entity);
-	void setRunningRight2(Entity& entity);
-	void setRunningRight3(Entity& entity);
-	void setRunningRight4(Entity& entity);
-	void setRunningLeft1(Entity& entity);
-	void setRunningLeft2(Entity& entity);
-	void setRunningLeft3(Entity& entity);
-	void setRunningLeft4(Entity& entity);
+
+	Graphic* GetPlayerStandingGraph(); // Simple accessor
+	void SetStanding(Entity& entity); // Simple mutator
+	void SetRunningRight(Entity& entity, int stateIndex); // Simple mutator
+	void SetRunningLeft(Entity& entity, int stateIndex); // Simple mutator
 
 	AnimationHolder();
 	~AnimationHolder();
+
 private:
+	// Char chains and graphics needed to create all the frames of the animations
 	const wchar_t** playerStanding;
-	const wchar_t** playerRunningRight1;
-	const wchar_t** playerRunningRight2;
-	const wchar_t** playerRunningRight3;
-	const wchar_t** playerRunningRight4;
-	const wchar_t** playerRunningLeft1;
-	const wchar_t** playerRunningLeft2;
-	const wchar_t** playerRunningLeft3;
-	const wchar_t** playerRunningLeft4;
+	const wchar_t** playerRunningRight[4];
+	const wchar_t** playerRunningLeft[4];
 
 	Graphic* playerStandingGraph;
-	Graphic* playerRunningRightGraph1;
-	Graphic* playerRunningRightGraph2;
-	Graphic* playerRunningRightGraph3;
-	Graphic* playerRunningRightGraph4;
-	Graphic* playerRunningLeftGraph1;
-	Graphic* playerRunningLeftGraph2;
-	Graphic* playerRunningLeftGraph3;
-	Graphic* playerRunningLeftGraph4;
-
-	// TODO: Utiliser table ou Array plutôt !
+	Graphic* playerRunningRightGraphs[4];
+	Graphic* playerRunningLeftGraphs[4];
 };
 

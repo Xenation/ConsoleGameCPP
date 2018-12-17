@@ -21,8 +21,8 @@ GraphicRender::~GraphicRender() {
 
 void GraphicRender::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
 	if (entity->graphic == nullptr) return;
-	Box camBox = Game::renderer->getCamera()->getBoundingBox();
-	Vec2i screenPos = entity->position - Game::renderer->getCamera()->getPosition();
+	Box camBox = Game::renderer->getCamera()->GetBoundingBox();
+	Vec2i screenPos = entity->position - Game::renderer->getCamera()->GetPosition();
 	for (int y = 0; y < entity->graphic->height; y++) {
 		for (int x = 0; x < entity->graphic->width; x++) {
 			if (!isInBox(camBox, {entity->position.x + x, entity->position.y + y})) continue;

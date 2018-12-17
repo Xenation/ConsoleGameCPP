@@ -16,28 +16,10 @@ RunningRightState::~RunningRightState()
 {
 }
 
-//void RunningRightState::handleInput(Player& player, int input) {
-//	if (input == 113 || input == 97) { // q key (or a key for qwerty keyboards) : running left
-//		player.assignState(&PlayerState::runningLeft);
-//		player.addVelocity({ -2, 0 });
-//		// TODO : Animation vers la gauche
-//	}
-//	else if (input == 32) { // space key : jumping
-//		player.assignState(&PlayerState::jumping);
-//		player.addVelocity({ 1, -1 });
-//		// TODO : Animation de saut à lancer
-//	}
-//	else { // any other key : no movement
-//		player.assignState(&PlayerState::standing);
-//		player.resetVelocity();
-//		// TODO : Animation standing
-//	}
-//}
-
 void RunningRightState::enter(Player& player) {
 	updateSpeed(player);
 	elapsedRunningTime = 0.0f;
-	AnimationHolder::instance().setRunningRight1(player);
+	AnimationHolder::instance().SetRunningRight(player, 0);
 }
 
 void RunningRightState::handleInput(Player& player, const std::array<bool, 7> &input) {
@@ -62,17 +44,17 @@ void RunningRightState::update(Player& player) {
 	elapsedRunningTime += Time::getInstance().deltaTime / 1000;
 
 	if (elapsedRunningTime >= 0.4f / player.getSpeedFactor()) {
-		AnimationHolder::instance().setRunningRight1(player);
+		AnimationHolder::instance().SetRunningRight(player, 0);
 		elapsedRunningTime = 0.0f;
 	}
 	else if (elapsedRunningTime >= 0.3f / player.getSpeedFactor()) {
-		AnimationHolder::instance().setRunningRight4(player);
+		AnimationHolder::instance().SetRunningRight(player, 3);
 	}
 	else if (elapsedRunningTime >= 0.2f / player.getSpeedFactor()) {
-		AnimationHolder::instance().setRunningRight3(player);
+		AnimationHolder::instance().SetRunningRight(player, 2);
 	}
 	else if (elapsedRunningTime >= 0.1f / player.getSpeedFactor()) {
-		AnimationHolder::instance().setRunningRight2(player);
+		AnimationHolder::instance().SetRunningRight(player, 1);
 	}
 }
 

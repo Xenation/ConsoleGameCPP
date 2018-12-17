@@ -20,48 +20,48 @@ Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, 
 Camera::~Camera() {
 }
 
-Vec2i Camera::getPosition() {
+Vec2i Camera::GetPosition() {
 	return position;
 }
 
-Vec2i Camera::getSize() {
+Vec2i Camera::GetSize() {
 	return {width, height};
 }
 
-short Camera::getWidth() {
+short Camera::GetWidth() {
 	return width;
 }
 
-short Camera::getHeight() {
+short Camera::GetHeight() {
 	return height;
 }
 
-void Camera::reset() {
+void Camera::Reset() {
 	// Reset the initial timer
 	hasStarted = false;
 	// Reset the freeze settings
 	isFrozen = false;
 	elapsedFreezeTime = 0.0f;
-	initializeFreezePosition();
-	initializeSpeedUpPosition();
+	InitializeFreezePosition();
+	InitializeSpeedUpPosition();
 	// Reset the camera position
 	position.x = 0;
-	setCameraAndPlayerSpeedFactor(1);
+	SetCameraAndPlayerSpeedFactor(1);
 }
 
-void Camera::setPlatformGenerator(PlatformGenerator* platformGeneratorPointer) {
+void Camera::SetPlatformGenerator(PlatformGenerator* platformGeneratorPointer) {
 	this->platformGenerator = platformGeneratorPointer;
 }
 
-void Camera::initializeFreezePosition() {
+void Camera::InitializeFreezePosition() {
 	freezeXPosition = platformGenerator->getPlayerFreezeXPosition();
 }
 
-void Camera::initializeSpeedUpPosition() {
+void Camera::InitializeSpeedUpPosition() {
 	speedUpXPosition = platformGenerator->getPlayerSpeedUpXPosition();
 }
 
-void Camera::initializeEndPosition() {
+void Camera::InitializeEndPosition() {
 	endXPosition = platformGenerator->getPlayerEndXPosition();
 }
 
@@ -78,7 +78,7 @@ void Camera::Update() {
 		freezeXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 	else if (position.x == speedUpXPosition) {
-		setCameraAndPlayerSpeedFactor(2);
+		SetCameraAndPlayerSpeedFactor(2);
 		speedUpXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 	else if (position.x >= endXPosition) {
@@ -107,9 +107,17 @@ void Camera::Update() {
 	}
 }
 
-void Camera::setCameraAndPlayerSpeedFactor(int factor) {
+void Camera::SetCameraAndPlayerSpeedFactor(int factor) {
 	speedFactor = factor;
 	Player* player = dynamic_cast<Player*>(followed);
 	player->setSpeedFactor(speedFactor);
 	player->updateSpeed();
+}
+
+void Camera::SetFollowed(Entity* newFollowed) {
+	this->followed = newFollowed;
+}
+
+void Camera::SetHasStarted(bool newState) {
+	this->hasStarted = newState;
 }

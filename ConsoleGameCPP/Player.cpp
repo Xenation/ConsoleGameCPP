@@ -27,8 +27,8 @@ Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator
 	isBlockedRight = false;
 	isBlockedLeft = false;
 	elapsedJumpTime = 0.0f;
-	this->collider->layer = &CollisionLayer::Player;
-	this->collider->isStatic = false;
+	this->collider->SetLayer(&CollisionLayer::Player);
+	this->collider->SetIsStatic(false);
 	setRespawnPosition(platformGenerator->getPlayerInitialPosition());
 	speedFactor = 1;
 	//isStanding = true; // Starts standing
@@ -74,7 +74,7 @@ void Player::Update() {
 	position.y += velocity.y;
 
 	// Kill check
-	if (position.y >= SCREEN_HEIGHT || position.x <= Game::renderer->getCamera()->getPosition().x) {
+	if (position.y >= SCREEN_HEIGHT || position.x <= Game::renderer->getCamera()->GetPosition().x) {
 		reset();
 	}
 
@@ -133,13 +133,13 @@ void Player::reset()
 	position.x = respawnPosition.x;
 	position.y = respawnPosition.y;
 	Game::soundManager->StopMusic();
-	Game::renderer->getCamera()->reset();
+	Game::renderer->getCamera()->Reset();
 	Game::scrollStarted = false;
 }
 
 void Player::OnCollisionTouch(Collider* touched, Side side) {
 	
-	if (touched->layer == &CollisionLayer::Trap)
+	if (touched->GetLayer() == &CollisionLayer::Trap)
 	{
 		reset();
 	}

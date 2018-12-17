@@ -83,7 +83,7 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 						graph->backgroundColor = ConsoleColor::BRIGHT_BLACK;
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);
 						colliderEnt3->graphicRender->setLayer(RenderLayer::Decor);
-						colliderEnt3->collider->layer = &CollisionLayer::Decor;
+						colliderEnt3->collider->SetLayer(&CollisionLayer::Decor);
 
 						enConstruction = false;
 
@@ -96,7 +96,7 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 						Graphic* graph = new ArtGraphic(platformGraph, taillePlateform, 1);
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);
 						colliderEnt3->graphicRender->setLayer(RenderLayer::Decor);
-						colliderEnt3->collider->layer = &CollisionLayer::Trap;
+						colliderEnt3->collider->SetLayer(&CollisionLayer::Trap);
 						trapEnConstruction = false;
 						// TODO : en faire une trap entity
 

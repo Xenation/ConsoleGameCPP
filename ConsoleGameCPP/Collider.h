@@ -5,15 +5,19 @@ class Entity;
 struct CollisionLayer;
 class Collider {
 public:
-	Entity* entity;
-	const CollisionLayer* layer;
 	Collider(Entity* entity, Vec2i* pos, Vec2i size);
 	~Collider();
 	void Update(std::unordered_map<unsigned int, Collider*>* colliders);
-	bool isStatic = true;
+	void SetLayer(const CollisionLayer* newLayer); // Simple mutator
+	const CollisionLayer* GetLayer(); // Simple accessor
+	void SetIsStatic(bool newState);
+
 private:
 	unsigned int uid;
 	Vec2i* position;
 	Vec2i size;
+	Entity* entity;
+	const CollisionLayer* layer;
+	bool isStatic = true;
 };
 

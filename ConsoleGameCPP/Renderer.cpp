@@ -20,9 +20,9 @@ Renderer::Renderer(Camera* camera, int frameCap) {
 	}
 	frameStart = 0;
 	Time::getInstance();
-	dwBufferSize = { camera->getWidth(), camera->getHeight() };
+	dwBufferSize = { camera->GetWidth(), camera->GetHeight() };
 	dwBufferCoord = {0, 0};
-	rectRegion = {0, 0, camera->getWidth() - 1, camera->getHeight() - 1};
+	rectRegion = {0, 0, camera->GetWidth() - 1, camera->GetHeight() - 1};
 	this->camera = camera;
 }
 
@@ -36,11 +36,11 @@ void Renderer::Initialize() {
 
 	/* Window size coordinates, be sure to start index at zero! */
 	//SMALL_RECT windowSize = { 0, 0, 109, 39 };
-	SMALL_RECT windowSize = { 0, 0, camera->getWidth() - 1, camera->getHeight() - 1 };
+	SMALL_RECT windowSize = { 0, 0, camera->GetWidth() - 1, camera->GetHeight() - 1 };
 
 
 	/* A COORD struct for specificying the console's screen buffer dimensions */
-	COORD bufferSize = { camera->getWidth(), camera->getHeight() };
+	COORD bufferSize = { camera->GetWidth(), camera->GetHeight() };
 
 	  /* initialize handles */
 	outputHandle = GetStdHandle(STD_OUTPUT_HANDLE);

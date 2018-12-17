@@ -157,7 +157,6 @@
     <ClInclude Include="PlatformGenerator.h" />
     <ClInclude Include="AnimationHolder.h" />
     <ClInclude Include="ArtGraphic.h" />
-    <ClInclude Include="BouncingEntity.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionLayer.h" />
@@ -192,7 +191,6 @@
     <ClCompile Include="PlatformGenerator.cpp" />
     <ClCompile Include="AnimationHolder.cpp" />
     <ClCompile Include="ArtGraphic.cpp" />
-    <ClCompile Include="BouncingEntity.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionLayer.cpp" />

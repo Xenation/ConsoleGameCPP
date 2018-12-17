@@ -68,3 +68,15 @@ void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
 	}
 
 }
+
+void Collider::SetLayer(const CollisionLayer* newLayer) {
+	layer = newLayer;
+}
+
+const CollisionLayer* Collider::GetLayer() {
+	return layer;
+}
+
+void Collider::SetIsStatic(bool newState) {
+	isStatic = newState;
+}

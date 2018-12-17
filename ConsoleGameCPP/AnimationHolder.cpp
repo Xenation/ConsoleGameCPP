@@ -12,53 +12,53 @@ AnimationHolder::AnimationHolder()
 	playerStanding[2] = L"/ \\ ";
 	playerStandingGraph = new ArtGraphic(playerStanding, 4, 3);
 
-	playerRunningRight1 = new const wchar_t*[3];
-	playerRunningRight1[0] = L" ☻  ";
-	playerRunningRight1[1] = L"/|\\/";
-	playerRunningRight1[2] = L" >\\ ";
-	playerRunningRightGraph1 = new ArtGraphic(playerRunningRight1, 4, 3);
+	playerRunningRight[0] = new const wchar_t*[3];
+	playerRunningRight[0][0] = L" ☻  ";
+	playerRunningRight[0][1] = L"/|\\/";
+	playerRunningRight[0][2] = L" >\\ ";
+	playerRunningRightGraphs[0] = new ArtGraphic(playerRunningRight[0], 4, 3);
 
-	playerRunningRight2 = new const wchar_t*[3];
-	playerRunningRight2[0] = L" ☻  ";
-	playerRunningRight2[1] = L"/|\\/";
-	playerRunningRight2[2] = L" |\\ ";
-	playerRunningRightGraph2 = new ArtGraphic(playerRunningRight2, 4, 3);
+	playerRunningRight[1] = new const wchar_t*[3];
+	playerRunningRight[1][0] = L" ☻  ";
+	playerRunningRight[1][1] = L"/|\\/";
+	playerRunningRight[1][2] = L" |\\ ";
+	playerRunningRightGraphs[1] = new ArtGraphic(playerRunningRight[1], 4, 3);
 
-	playerRunningRight3 = new const wchar_t*[3];
-	playerRunningRight3[0] = L" ☻  ";
-	playerRunningRight3[1] = L"/|\\/";
-	playerRunningRight3[2] = L" |> ";
-	playerRunningRightGraph3 = new ArtGraphic(playerRunningRight3, 4, 3);
+	playerRunningRight[2] = new const wchar_t*[3];
+	playerRunningRight[2][0] = L" ☻  ";
+	playerRunningRight[2][1] = L"/|\\/";
+	playerRunningRight[2][2] = L" |> ";
+	playerRunningRightGraphs[2] = new ArtGraphic(playerRunningRight[2], 4, 3);
 
-	playerRunningRight4 = new const wchar_t*[3];
-	playerRunningRight4[0] = L" ☻  ";
-	playerRunningRight4[1] = L"/|\\/";
-	playerRunningRight4[2] = L"/ \\ ";
-	playerRunningRightGraph4 = new ArtGraphic(playerRunningRight4, 4, 3);
+	playerRunningRight[3] = new const wchar_t*[3];
+	playerRunningRight[3][0] = L" ☻  ";
+	playerRunningRight[3][1] = L"/|\\/";
+	playerRunningRight[3][2] = L"/ \\ ";
+	playerRunningRightGraphs[3] = new ArtGraphic(playerRunningRight[3], 4, 3);
 
-	playerRunningLeft1 = new const wchar_t*[3];
-	playerRunningLeft1[0] = L"  ☻ ";
-	playerRunningLeft1[1] = L"\\/|\\";
-	playerRunningLeft1[2] = L" /< ";
-	playerRunningLeftGraph1 = new ArtGraphic(playerRunningLeft1, 4, 3);
+	playerRunningLeft[0] = new const wchar_t*[3];
+	playerRunningLeft[0][0] = L"  ☻ ";
+	playerRunningLeft[0][1] = L"\\/|\\";
+	playerRunningLeft[0][2] = L" /< ";
+	playerRunningLeftGraphs[0] = new ArtGraphic(playerRunningLeft[0], 4, 3);
 
-	playerRunningLeft2 = new const wchar_t*[3];
-	playerRunningLeft2[0] = L"  ☻ ";
-	playerRunningLeft2[1] = L"\\/|\\";
-	playerRunningLeft2[2] = L" /| ";
-	playerRunningLeftGraph2 = new ArtGraphic(playerRunningLeft2, 4, 3);
+	playerRunningLeft[1] = new const wchar_t*[3];
+	playerRunningLeft[1][0] = L"  ☻ ";
+	playerRunningLeft[1][1] = L"\\/|\\";
+	playerRunningLeft[1][2] = L" /| ";
+	playerRunningLeftGraphs[1] = new ArtGraphic(playerRunningLeft[1], 4, 3);
 
-	playerRunningLeft3 = new const wchar_t*[3];
-	playerRunningLeft3[0] = L"  ☻ ";
-	playerRunningLeft3[1] = L"\\/|\\";
-	playerRunningLeft3[2] = L" <| ";
-	playerRunningLeftGraph3 = new ArtGraphic(playerRunningLeft3, 4, 3);
+	playerRunningLeft[2] = new const wchar_t*[3];
+	playerRunningLeft[2][0] = L"  ☻ ";
+	playerRunningLeft[2][1] = L"\\/|\\";
+	playerRunningLeft[2][2] = L" <| ";
+	playerRunningLeftGraphs[2] = new ArtGraphic(playerRunningLeft[2], 4, 3);
 
-	playerRunningLeft4 = new const wchar_t*[3];
-	playerRunningLeft4[0] = L"  ☻ ";
-	playerRunningLeft4[1] = L"\\/|\\";
-	playerRunningLeft4[2] = L" / \\";
-	playerRunningLeftGraph4 = new ArtGraphic(playerRunningLeft4, 4, 3);
+	playerRunningLeft[3] = new const wchar_t*[3];
+	playerRunningLeft[3][0] = L"  ☻ ";
+	playerRunningLeft[3][1] = L"\\/|\\";
+	playerRunningLeft[3][2] = L" / \\";
+	playerRunningLeftGraphs[3] = new ArtGraphic(playerRunningLeft[3], 4, 3);
 }
 
 
@@ -66,43 +66,22 @@ AnimationHolder::~AnimationHolder()
 {
 }
 
-Graphic* AnimationHolder::getPlayerStandingGraph() {
+Graphic* AnimationHolder::GetPlayerStandingGraph() {
 	return playerStandingGraph;
 }
 
-void AnimationHolder::setStanding(Entity& entity) {
-	entity.graphic = playerStandingGraph; // TODO : méthode public setter dans Entity ?
+void AnimationHolder::SetStanding(Entity& entity) {
+	entity.graphic = playerStandingGraph;
 }
 
-void AnimationHolder::setRunningRight1(Entity& entity) {
-	entity.graphic = playerRunningRightGraph1; // TODO : méthode public setter dans Entity ?
+void AnimationHolder::SetRunningRight(Entity& entity, int stateIndex) {
+	if ( stateIndex <= 3 ) {
+		entity.graphic = playerRunningRightGraphs[stateIndex];
+	}
 }
 
-void AnimationHolder::setRunningRight2(Entity& entity) {
-	entity.graphic = playerRunningRightGraph2; // TODO : méthode public setter dans Entity ?
-}
-
-void AnimationHolder::setRunningRight3(Entity& entity) {
-	entity.graphic = playerRunningRightGraph3; // TODO : méthode public setter dans Entity ?
-}
-
-void AnimationHolder::setRunningRight4(Entity& entity) {
-	entity.graphic = playerRunningRightGraph4; // TODO : méthode public setter dans Entity ?
-}
-
-
-void AnimationHolder::setRunningLeft1(Entity& entity) {
-	entity.graphic = playerRunningLeftGraph1; // TODO : méthode public setter dans Entity ?
-}
-
-void AnimationHolder::setRunningLeft2(Entity& entity) {
-	entity.graphic = playerRunningLeftGraph2; // TODO : méthode public setter dans Entity ?
-}
-
-void AnimationHolder::setRunningLeft3(Entity& entity) {
-	entity.graphic = playerRunningLeftGraph3; // TODO : méthode public setter dans Entity ?
-}
-
-void AnimationHolder::setRunningLeft4(Entity& entity) {
-	entity.graphic = playerRunningLeftGraph4; // TODO : méthode public setter dans Entity ?
+void AnimationHolder::SetRunningLeft(Entity& entity, int stateIndex) {
+	if ( stateIndex <= 3 ) {
+		entity.graphic = playerRunningLeftGraphs[stateIndex];
+	}
 }
