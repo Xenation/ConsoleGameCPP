@@ -5,42 +5,62 @@
 class Collider;
 class Graphic;
 class PlatformGenerator;
+
+/*
+===============================================================================
+Class that handles the player movements, state machine and collisions
+===============================================================================
+*/
 class Player : public Entity {
 public:
 	Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator);
 	~Player();
+
+	// Method for the update design pattern
 	virtual void Update();
-	//virtual void handleInput(int input);
-	virtual void enter();
-	virtual void handleInput(const std::array<bool, 7> &input);
-	void assignState(class PlayerState* state);
-	void addVelocity(Vec2i velocity);
-	void setXVelocity(int xVelocity);
-	void setYVelocity(int yVelocity);
-	void setJumpingAndRising(bool isJumpingAndRising);
-	bool getIsJumping();
-	bool getIsBlockedRight();
-	bool getIsBlockedLeft();
+
+	// Methods for the machine state of the player
+	virtual void Enter();
+	virtual void HandleInput(const std::array<bool, 7> &input);
+	void AssignState(class PlayerState* state);
+	void UpdateSpeed();
+
+	// Methods for the management of the movement of the character (also with accessors / mutators)
+	void AddVelocity(Vec2i velocity);
+	void SetXVelocity(int xVelocity);
+	void SetYVelocity(int yVelocity);
+	void SetJumpingAndRising(bool isJumpingAndRising); // for jumping management
+	bool GetIsJumping();
+	void SetSpeedFactor(int factor);
+	int GetSpeedFactor();
+
+	// Methods for the management of collisions
+	bool GetIsBlockedRight();
+	bool GetIsBlockedLeft();
 	virtual void OnCollisionTouch(Collider* touched, Side side);
-	void setRespawnPosition(Vec2i newRespawnPosition);
-	void reset();
-	void setSpeedFactor(int factor);
-	int getSpeedFactor();
-	void updateSpeed();
+
+	// Methods for the management of respawn
+	void SetRespawnPosition(Vec2i newRespawnPosition);
+	void Reset();
+
 private:
-	Vec2i velocity;
+	// Property for the state machine
 	class PlayerState* state;
+	
+	// Properties needed to manage the movement of the player
+	Vec2i velocity;
 	bool isJumping;
 	bool isRising;
 	bool isFalling;
+	float elapsedJumpTime;
+	int speedFactor;
+
+	// Properties needed to management the collisions of the player
 	bool isBlockedRight;
 	bool isBlockedLeft;
-	float elapsedJumpTime;
+
+	// Property needed for the management of respawn
 	PlatformGenerator* platformGenerator;
-	Vec2i respawnPosition; // Used to teleport the player in case of death
-	int speedFactor;
-	//bool isStanding;
-	//bool isJumping;
-	//bool isRunning;
+	Vec2i respawnPosition;
 };
 

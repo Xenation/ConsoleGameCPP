@@ -12,32 +12,45 @@ class Camera : public Entity {
 public:
 	Camera(Vec2i pos, int width, int height);
 	~Camera();
-	inline Box GetBoundingBox() { return {position, {width, height}}; }
-	Vec2i GetPosition();
-	Vec2i GetSize();
-	short GetWidth();
-	short GetHeight();
-	void Reset();
+
+	// Accessors and mutators
+	inline Box GetBoundingBox() const { return {position, {width, height}}; }
+	Vec2i GetPosition() const;
+	Vec2i GetSize() const;
+	short GetWidth() const;
+	short GetHeight() const;
 	void SetPlatformGenerator(PlatformGenerator* platformGeneratorPointer);
+	void SetFollowed(Entity* newFollowed);
+	void SetHasStarted(bool newState);
+	void SetCameraAndPlayerSpeedFactor(int factor);
+
+	// Used for respawn of the character when he dies
+	void Reset();
+
+	// Used to initialize the notable positions of the camera in the level
 	void InitializeFreezePosition();
 	void InitializeSpeedUpPosition();
 	void InitializeEndPosition();
+
+	// Update design pattern
 	virtual void Update();
-	void SetCameraAndPlayerSpeedFactor(int factor);
-	void SetFollowed(Entity* newFollowed);
-	void SetHasStarted(bool newState);
 
 private:
-	Entity* followed;
-	bool hasStarted;
-	short width;
-	short height;
-	float elapsedTime;
+	// Properties used to initialize and implement the notable positions and effects of the camera in the level
+	PlatformGenerator* platformGenerator;
 	int freezeXPosition;
 	int speedUpXPosition;
 	int endXPosition;
 	bool isFrozen;
+	float elapsedTime;
 	float elapsedFreezeTime;
 	int speedFactor;
-	PlatformGenerator* platformGenerator;
+
+	// Properties used for the horizontal scrolling
+	Entity* followed;
+	bool hasStarted;
+
+	// Properties used for the size of the camera view
+	short width;
+	short height;
 };

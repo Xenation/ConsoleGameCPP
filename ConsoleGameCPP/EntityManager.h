@@ -4,9 +4,16 @@
 #include "Constants.h"
 class Entity;
 class Camera;
+
+/*
+===============================================================================
+Class that manages the entities present in the game
+===============================================================================
+*/
 class EntityManager {
 public:
-	static EntityManager& getInstance() {
+	// Singleton
+	static EntityManager& GetInstance() {
 		static EntityManager instance;
 		return instance;
 	}

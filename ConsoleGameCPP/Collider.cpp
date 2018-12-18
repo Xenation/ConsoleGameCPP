@@ -12,11 +12,11 @@ Collider::Collider(Entity* entity, Vec2i* pos, Vec2i size) {
 	this->layer = &CollisionLayer::Default;
 	this->position = pos;
 	this->size = size;
-	this->uid = PhysicsManager::getInstance().RegisterCollider(this);
+	this->uid = PhysicsManager::GetInstance().RegisterCollider(this);
 }
 
 Collider::~Collider() {
-	PhysicsManager::getInstance().UnregisterCollider(uid);
+	PhysicsManager::GetInstance().UnregisterCollider(uid);
 }
 
 void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
@@ -73,7 +73,7 @@ void Collider::SetLayer(const CollisionLayer* newLayer) {
 	layer = newLayer;
 }
 
-const CollisionLayer* Collider::GetLayer() {
+const CollisionLayer* Collider::GetLayer() const {
 	return layer;
 }
 

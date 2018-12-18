@@ -1,4 +1,10 @@
 #pragma once
+
+/*
+===============================================================================
+Struct that holds the layers for the collision system
+===============================================================================
+*/
 struct CollisionLayer {
 public:
 	const unsigned int layerIndex;

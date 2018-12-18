@@ -10,10 +10,14 @@ Time::~Time() {
 	delete(timer);
 }
 
-float Time::getDeltaTime() {
-	return Time::getInstance().deltaTime;
+float Time::GetDeltaTime() {
+	return Time::GetInstance().deltaTime;
+}
+
+void Time::SetDeltaTime(float newTime) {
+	Time::GetInstance().deltaTime = newTime;
 }
 
 float Time::time() {
-	return Time::getInstance().timer->getElapsedMs();
+	return Time::GetInstance().timer->getElapsedMs();
 }

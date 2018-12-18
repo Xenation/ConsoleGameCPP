@@ -1,9 +1,16 @@
 #pragma once
 #include <unordered_map>
 class Collider;
+
+/*
+===============================================================================
+Class that handles physics
+===============================================================================
+*/
 class PhysicsManager {
 public:
-	static PhysicsManager& getInstance() {
+	// Singleton
+	static PhysicsManager& GetInstance() {
 		static PhysicsManager instance;
 		return instance;
 	}

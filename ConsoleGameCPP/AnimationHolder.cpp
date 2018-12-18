@@ -66,22 +66,22 @@ AnimationHolder::~AnimationHolder()
 {
 }
 
-Graphic* AnimationHolder::GetPlayerStandingGraph() {
+Graphic* AnimationHolder::GetPlayerStandingGraph() const {
 	return playerStandingGraph;
 }
 
 void AnimationHolder::SetStanding(Entity& entity) {
-	entity.graphic = playerStandingGraph;
+	entity.SetGraphic(playerStandingGraph);
 }
 
 void AnimationHolder::SetRunningRight(Entity& entity, int stateIndex) {
 	if ( stateIndex <= 3 ) {
-		entity.graphic = playerRunningRightGraphs[stateIndex];
+		entity.SetGraphic(playerRunningRightGraphs[stateIndex]);
 	}
 }
 
 void AnimationHolder::SetRunningLeft(Entity& entity, int stateIndex) {
 	if ( stateIndex <= 3 ) {
-		entity.graphic = playerRunningLeftGraphs[stateIndex];
+		entity.SetGraphic(playerRunningLeftGraphs[stateIndex]);
 	}
 }

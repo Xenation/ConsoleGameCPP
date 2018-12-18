@@ -96,9 +96,6 @@
     <ClInclude Include="ImageASCII.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TrapEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GraphicRender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -183,9 +180,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImageASCII.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TrapEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GraphicRender.cpp">

@@ -16,48 +16,48 @@ RunningRightState::~RunningRightState()
 {
 }
 
-void RunningRightState::enter(Player& player) {
-	updateSpeed(player);
+void RunningRightState::Enter(Player& player) {
+	UpdateSpeed(player);
 	elapsedRunningTime = 0.0f;
 	AnimationHolder::instance().SetRunningRight(player, 0);
 }
 
-void RunningRightState::handleInput(Player& player, const std::array<bool, 7> &input) {
-	if (input[SPACE] && !player.getIsJumping()) { // Jumping
-		player.assignState(&PlayerState::jumping);
-		player.enter();
+void RunningRightState::HandleInput(Player& player, const std::array<bool, 7> &input) {
+	if (input[SPACE] && !player.GetIsJumping()) { // Jumping
+		player.AssignState(&PlayerState::jumping);
+		player.Enter();
 	}
 	else if (input[D] || input[RIGHT_ARROW]) {
 		// Do nothing : avoids frequently switching between states
 	}
-	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.getIsBlockedRight()) { // Running left
-		player.assignState(&PlayerState::runningLeft);
-		player.enter();
+	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.GetIsBlockedRight()) { // Running left
+		player.AssignState(&PlayerState::runningLeft);
+		player.Enter();
 	}
 	else { // any other key : no movement
-		player.assignState(&PlayerState::standing);
-		player.enter();
+		player.AssignState(&PlayerState::standing);
+		player.Enter();
 	}
 }
 
-void RunningRightState::update(Player& player) {
-	elapsedRunningTime += Time::getInstance().deltaTime / 1000;
+void RunningRightState::Update(Player& player) {
+	elapsedRunningTime += Time::GetInstance().GetDeltaTime() / 1000;
 
-	if (elapsedRunningTime >= 0.4f / player.getSpeedFactor()) {
+	if (elapsedRunningTime >= 0.4f / player.GetSpeedFactor()) {
 		AnimationHolder::instance().SetRunningRight(player, 0);
 		elapsedRunningTime = 0.0f;
 	}
-	else if (elapsedRunningTime >= 0.3f / player.getSpeedFactor()) {
+	else if (elapsedRunningTime >= 0.3f / player.GetSpeedFactor()) {
 		AnimationHolder::instance().SetRunningRight(player, 3);
 	}
-	else if (elapsedRunningTime >= 0.2f / player.getSpeedFactor()) {
+	else if (elapsedRunningTime >= 0.2f / player.GetSpeedFactor()) {
 		AnimationHolder::instance().SetRunningRight(player, 2);
 	}
-	else if (elapsedRunningTime >= 0.1f / player.getSpeedFactor()) {
+	else if (elapsedRunningTime >= 0.1f / player.GetSpeedFactor()) {
 		AnimationHolder::instance().SetRunningRight(player, 1);
 	}
 }
 
-void RunningRightState::updateSpeed(Player& player) {
-	player.setXVelocity(1 * player.getSpeedFactor());
+void RunningRightState::UpdateSpeed(Player& player) {
+	player.SetXVelocity(1 * player.GetSpeedFactor());
 }

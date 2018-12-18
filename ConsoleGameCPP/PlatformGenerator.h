@@ -2,11 +2,16 @@
 #include "ImageASCII.h"
 #include "MathStructs.h"
 
+/*
+===============================================================================
+Class that generates the terrain of the game
+===============================================================================
+*/
 class PlatformGenerator {
-
 
 public :
 
+	// Characters used in the file and representation in game
 	const char PLATFORM_ASCII_CODE = '=';
 	const wchar_t PLATFORM_ASCII_REPRESENTATION = L'▓';
 	const char PLAYER_ASCII_CODE = 'P';
@@ -16,11 +21,13 @@ public :
 	const wchar_t TRAP_ASCII_REPRESENTATION = L'X';
 	const char END_ASCII_CODE = 'E';
 
-	void generateWorld(std::string nomFichierImage);
-	Vec2i getPlayerInitialPosition();
-	int getPlayerFreezeXPosition();
-	int getPlayerSpeedUpXPosition();
-	int getPlayerEndXPosition();
+	void GenerateWorld(std::string imageFileName); // Creates the terrain and platforms
+
+	// Accessors
+	Vec2i GetPlayerInitialPosition() const;
+	int GetPlayerFreezeXPosition() const;
+	int GetPlayerSpeedUpXPosition() const;
+	int GetPlayerEndXPosition() const;
 
 private :
 	Vec2i playerInitialPosition;

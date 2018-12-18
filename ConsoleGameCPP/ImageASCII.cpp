@@ -7,13 +7,13 @@ ImageASCII::ImageASCII() {
 }
 
 
-bool ImageASCII::genererImage(std::string nomImage) {
+bool ImageASCII::GenerateImage(std::string nomImage) {
 
-	// on récup le nombres de lignes et de colonnes
-	if (getNbLignesNbColonnes(nomImage)) {
-		// on initialise la taille du tableau
-		image = initialiserTableau(nb_colonnes, nb_lignes);
-		remplirTableau(image, nomImage);
+	// Get the line and column number
+	if (GetLinesAndColumnsNumber(nomImage)) {
+		// Initialize the size of the table
+		image = InitializeTable(nbColumns, nbLines);
+		FillTable(image, nomImage);
 		return true;
 	}
 	else {
@@ -23,9 +23,9 @@ bool ImageASCII::genererImage(std::string nomImage) {
 }
 
 
-bool ImageASCII::getNbLignesNbColonnes(std::string nomImage) {
+bool ImageASCII::GetLinesAndColumnsNumber(std::string nomImage) {
 
-	std::ifstream input(nomImage); //put your program together with thsi file in the same folder.
+	std::ifstream input(nomImage); //put your program together with this file in the same folder.
 	if (input.is_open()) {
 
 		while (!input.eof()) {
@@ -33,13 +33,13 @@ bool ImageASCII::getNbLignesNbColonnes(std::string nomImage) {
 			std::string ligne;
 			getline(input, ligne); //read number
 
-			// on check si le texte possède bien un nombre de caracteres équivalent sur chaque ligne
-			uniforme_ligne = (uniforme_ligne && (nb_colonnes == -1 && ligne.size() != 0) || ligne.size() == nb_colonnes);
+			// Check that the file has the same number of characters on every line
+			hasUniformLines = (hasUniformLines && (nbColumns == -1 && ligne.size() != 0) || ligne.size() == nbColumns);
 
-			// on ne garde que la valeur de la colonnes la plus grande
-			if(nb_colonnes < static_cast<int>(ligne.size())) nb_colonnes = ligne.size();
+			// Keep only the biggest column value
+			if(nbColumns < static_cast<int>(ligne.size())) nbColumns = ligne.size();
 
-			nb_lignes++;
+			nbLines++;
 		}
 		input.close();
 		return true;
@@ -50,7 +50,7 @@ bool ImageASCII::getNbLignesNbColonnes(std::string nomImage) {
 }
 
 
-char** ImageASCII::initialiserTableau(int col, int lign) {
+char** ImageASCII::InitializeTable(int col, int lign) {
 
 	image = new char*[lign];
 	for (int i = 0; i < lign; i++) {
@@ -60,9 +60,9 @@ char** ImageASCII::initialiserTableau(int col, int lign) {
 	return image;
 }
 
-void ImageASCII::remplirTableau(char **tableau, std::string nomImage) {
+void ImageASCII::FillTable(char **tableau, std::string nomImage) {
 
-	std::ifstream input(nomImage); //put your program together with thsi file in the same folder.
+	std::ifstream input(nomImage); //put your program together with this file in the same folder.
 	if (input.is_open()) {
 
 		for (int i = 0; !input.eof(); i++) {
@@ -78,25 +78,25 @@ void ImageASCII::remplirTableau(char **tableau, std::string nomImage) {
 	}
 }
 
-void ImageASCII::parcourirTableau(char **tableau) {
+void ImageASCII::SweepTable(char **tableau) {
 
-	for (int i = 0; i < nb_lignes; i++) {
-		for (int j = 0; j < nb_colonnes; j++) {
+	for (int i = 0; i < nbLines; i++) {
+		for (int j = 0; j < nbColumns; j++) {
 			std::cout << tableau[i][j];
 		}
 		std::cout << std::endl;
 	}
 }
 
-int ImageASCII::getWidth() const {
-	return nb_colonnes;
+int ImageASCII::GetWidth() const {
+	return nbColumns;
 }
 
-int ImageASCII::getHeight() const {
-	return nb_lignes;
+int ImageASCII::GetHeight() const {
+	return nbLines;
 }
 
-char** ImageASCII::getImage() const {
+char** ImageASCII::GetImage() const {
 	return image;
 }
 

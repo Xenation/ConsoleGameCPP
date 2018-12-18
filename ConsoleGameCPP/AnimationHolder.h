@@ -13,16 +13,17 @@ class AnimationHolder
 public:
 
 public:
+	// Singleton implementation with C++11 compiler : initializer for a local static variable is only run once
 	static AnimationHolder& instance() {
-		// Singleton implementation with C++11 compiler : initializer for a local static variable is only run once
 		static AnimationHolder *instance = new AnimationHolder();
 		return *instance;
 	}
 
-	Graphic* GetPlayerStandingGraph(); // Simple accessor
-	void SetStanding(Entity& entity); // Simple mutator
-	void SetRunningRight(Entity& entity, int stateIndex); // Simple mutator
-	void SetRunningLeft(Entity& entity, int stateIndex); // Simple mutator
+	// Simple accessors and mutators
+	Graphic* GetPlayerStandingGraph() const;
+	void SetStanding(Entity& entity);
+	void SetRunningRight(Entity& entity, int stateIndex);
+	void SetRunningLeft(Entity& entity, int stateIndex);
 
 	AnimationHolder();
 	~AnimationHolder();

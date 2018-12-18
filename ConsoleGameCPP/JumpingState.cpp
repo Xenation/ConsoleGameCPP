@@ -14,26 +14,26 @@ JumpingState::~JumpingState()
 {
 }
 
-void JumpingState::enter(Player& player) {
-	updateSpeed(player);
-	player.setJumpingAndRising(true); // Launches jumping animation
+void JumpingState::Enter(Player& player) {
+	UpdateSpeed(player); // Changes the speed
+	player.SetJumpingAndRising(true); // Launches jumping animation
 }
 
-void JumpingState::handleInput(class Player& player, const std::array<bool, 7> &input) {
-	if ((input[D] || input[RIGHT_ARROW]) && !player.getIsBlockedRight()) { // Running right
-		player.assignState(&PlayerState::runningRight);
-		player.enter();
+void JumpingState::HandleInput(class Player& player, const std::array<bool, 7> &input) {
+	if ((input[D] || input[RIGHT_ARROW]) && !player.GetIsBlockedRight()) { // Running right
+		player.AssignState(&PlayerState::runningRight);
+		player.Enter();
 	}
-	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.getIsBlockedLeft()) { // Running left
-		player.assignState(&PlayerState::runningLeft);
-		player.enter();
+	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.GetIsBlockedLeft()) { // Running left
+		player.AssignState(&PlayerState::runningLeft);
+		player.Enter();
 	}
 }
 
-void JumpingState::update(Player& player) {
+void JumpingState::Update(Player& player) {
 
 }
 
-void JumpingState::updateSpeed(Player& player) {
-	player.setYVelocity(-1);
+void JumpingState::UpdateSpeed(Player& player) {
+	player.SetYVelocity(-1);
 }

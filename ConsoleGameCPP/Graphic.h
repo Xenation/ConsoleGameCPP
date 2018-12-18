@@ -4,6 +4,12 @@
 #include "Constants.h"
 #include "ConsoleColor.h"
 class Camera;
+
+/*
+===============================================================================
+Class used holds the information of the graphic elements
+===============================================================================
+*/
 class Graphic {
 public:
 	int width = 0;

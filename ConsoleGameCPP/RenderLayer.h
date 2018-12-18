@@ -1,6 +1,12 @@
 #pragma once
 #include <unordered_map>
 class GraphicRender;
+
+/*
+===============================================================================
+Class that manages the layers of the rendering
+===============================================================================
+*/
 class RenderLayer {
 public:
 	const unsigned int layerIndex;

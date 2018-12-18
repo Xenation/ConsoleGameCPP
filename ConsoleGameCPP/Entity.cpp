@@ -18,11 +18,11 @@ Entity::Entity(Graphic* graphic, Vec2i pos, bool hasCollider) {
 	if (hasCollider) {
 		this->collider = new Collider(this, &this->position, { this->graphic->width, this->graphic->height });
 	}
-	uid = EntityManager::getInstance().RegisterEntity(this);
+	uid = EntityManager::GetInstance().RegisterEntity(this);
 }
 
 Entity::~Entity() {
-	EntityManager::getInstance().UnregisterEntity(uid);
+	EntityManager::GetInstance().UnregisterEntity(uid);
 	delete collider;
 }
 
@@ -32,4 +32,24 @@ void Entity::Update() {
 
 void Entity::OnCollisionTouch(Collider* touched, Side side) {
 
+}
+
+void Entity::SetGraphic(Graphic* newGraphic) {
+	graphic = newGraphic;
+}
+
+Graphic* Entity::GetGraphic() const {
+	return graphic;
+}
+
+Vec2i Entity::GetPosition() const {
+	return position;
+}
+
+Collider* Entity::GetCollider() const {
+	return collider;
+}
+
+GraphicRender* Entity::GetGraphicRender() const {
+	return graphicRender;
 }

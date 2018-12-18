@@ -19,8 +19,8 @@
 
 Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator) : Entity::Entity(graphic, pos, true) {
 	this->velocity = { 0, 0 }; // No velocity at first
-	graphicRender->setLayer(RenderLayer::Player);
-	assignState(&PlayerState::standing);
+	graphicRender->SetLayer(RenderLayer::Player);
+	AssignState(&PlayerState::standing);
 	isJumping = false;
 	isRising = false;
 	isFalling = false;
@@ -29,7 +29,7 @@ Player::Player(Graphic* graphic, Vec2i pos, PlatformGenerator* platformGenerator
 	elapsedJumpTime = 0.0f;
 	this->collider->SetLayer(&CollisionLayer::Player);
 	this->collider->SetIsStatic(false);
-	setRespawnPosition(platformGenerator->getPlayerInitialPosition());
+	SetRespawnPosition(platformGenerator->GetPlayerInitialPosition());
 	speedFactor = 1;
 	//isStanding = true; // Starts standing
 	//isRunning = false;
@@ -45,37 +45,29 @@ void Player::Update() {
 
 	if (isJumping) {
 		if (isRising) {
-			elapsedJumpTime += Time::getInstance().deltaTime / 1000;
+			elapsedJumpTime += Time::GetInstance().GetDeltaTime() / 1000;
 
-			// if (elapsedJumpTime >= 0.3f / speedFactor)
-			// TODO : check if we need to multiply speed for jump (collision troubles...)
 			if (elapsedJumpTime >= 0.3f) {
-				setYVelocity(1);
+				SetYVelocity(1);
 				isRising = false;
 				elapsedJumpTime = 0.0f;
 			}
-			//else if (elapsedJumpTime >= 0.4f)
-			//{
-			//	setYVelocity(0);
-			//}
 		}
 	}
 	else {
 		if (isFalling) {
-			// setYVelocity(1 * speedFactor);
-			// TODO : check if we need to multiply speed for jump (collision troubles...)
-			setYVelocity(1);
+			SetYVelocity(1);
 		}
 		elapsedJumpTime = 0.0f; // Resets the jump timer in case the full jump is interrupted by a platform
 	}
 
-	state->update(*this);
+	state->Update(*this);
 	position.x += velocity.x;
 	position.y += velocity.y;
 
 	// Kill check
-	if (position.y >= SCREEN_HEIGHT || position.x <= Game::renderer->getCamera()->GetPosition().x) {
-		reset();
+	if (position.y >= SCREEN_HEIGHT || position.x <= Game::GetRenderer()->GetCamera()->GetPosition().x) {
+		Reset();
 	}
 
 	isFalling = true; // Falling by default, colliders will then change the status if there is something underneath the player
@@ -83,96 +75,96 @@ void Player::Update() {
 	isBlockedLeft = false;
 }
 
-void Player::enter() {
-	state->enter(*this);
+void Player::Enter() {
+	state->Enter(*this);
 }
 
-void Player::handleInput(const std::array<bool, 7> &input) {
-	state->handleInput(*this, input);
+void Player::HandleInput(const std::array<bool, 7> &input) {
+	state->HandleInput(*this, input);
 }
 
-void Player::assignState(PlayerState* state) {
+void Player::AssignState(PlayerState* state) {
 	this->state = state;
 }
 
-void Player::addVelocity(Vec2i velocity) {
+void Player::AddVelocity(Vec2i velocity) {
 	this->velocity = { this->velocity.x + velocity.x, this->velocity.y + velocity.y };
 }
 
-void Player::setXVelocity(int xVelocity) {
+void Player::SetXVelocity(int xVelocity) {
 	this->velocity.x = xVelocity;
 }
 
-void Player::setYVelocity(int yVelocity) {
+void Player::SetYVelocity(int yVelocity) {
 	this->velocity.y = yVelocity;
 }
 
-void Player::setJumpingAndRising(bool isJumpingAndRising) {
+void Player::SetJumpingAndRising(bool isJumpingAndRising) {
 	this->isJumping = isJumpingAndRising;
 	this->isRising = isJumpingAndRising;
 }
 
-bool Player::getIsJumping() {
+bool Player::GetIsJumping() {
 	return isJumping;
 }
 
-bool Player::getIsBlockedRight() {
+bool Player::GetIsBlockedRight() {
 	return isBlockedRight;
 }
 
-bool Player::getIsBlockedLeft() {
+bool Player::GetIsBlockedLeft() {
 	return isBlockedLeft;
 }
 
-void Player::setRespawnPosition(Vec2i newRespawnPosition) {
+void Player::SetRespawnPosition(Vec2i newRespawnPosition) {
 	respawnPosition = newRespawnPosition;
 }
 
-void Player::reset()
+void Player::Reset()
 {
 	position.x = respawnPosition.x;
 	position.y = respawnPosition.y;
-	Game::soundManager->StopMusic();
-	Game::renderer->getCamera()->Reset();
-	Game::scrollStarted = false;
+	Game::GetSoundManager()->StopMusic();
+	Game::GetRenderer()->GetCamera()->Reset();
+	Game::SetScrollStarted(false);
 }
 
 void Player::OnCollisionTouch(Collider* touched, Side side) {
 	
 	if (touched->GetLayer() == &CollisionLayer::Trap)
 	{
-		reset();
+		Reset();
 	}
 	else if (side == Side::Bottom) {
 		isFalling = false;
-		setYVelocity(0);
+		SetYVelocity(0);
 		if (isJumping) {
 			isJumping = false;
-			assignState(&PlayerState::standing);
-			enter();
+			AssignState(&PlayerState::standing);
+			Enter();
 		}
 	}
 	else if (side == Side::Left) {
 		isBlockedLeft = true;
-		setXVelocity(0);
+		SetXVelocity(0);
 	}
 	else if (side == Side::Right) {
 		isBlockedRight = true;
-		setXVelocity(0);
+		SetXVelocity(0);
 	}
 	else if (side == Side::Top) {
-		setYVelocity(-this->velocity.y);
+		SetYVelocity(-this->velocity.y);
 	}
 }
 
-void Player::setSpeedFactor(int factor) {
+void Player::SetSpeedFactor(int factor) {
 	speedFactor = factor;
 }
 
-int Player::getSpeedFactor() {
+int Player::GetSpeedFactor() {
 	return speedFactor;
 }
 
-void Player::updateSpeed() {
-	state->updateSpeed(*this);
+void Player::UpdateSpeed() {
+	state->UpdateSpeed(*this);
 }

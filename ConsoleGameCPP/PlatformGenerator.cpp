@@ -9,112 +9,110 @@
 #include "RenderLayer.h"
 
 
-void PlatformGenerator::generateWorld(std::string nomFichierImage) {
+void PlatformGenerator::GenerateWorld(std::string imageFileName) {
 	 
 	ImageASCII *img = new ImageASCII();
 
-	if (img->genererImage(nomFichierImage)) {
+	if (img->GenerateImage(imageFileName)) {
 
-		char **charImg = img->getImage();
+		char **charImg = img->GetImage();
 
-		// indique le début de la plateforme
-		// variable reset à chaque nouveelle platforme
+		// Indicates the start of a platform
+		// Resets for each new platform
 		Vec2i posPlatform = { 0, 0 };
 
-		// indique si le programme est en train de contruire une plateforme
-		// variable reset à chaque nouvelle platforme
-		bool enConstruction = false;
+		// Indicates whether or not a platform is being constructed
+		// Resets for each new platform
+		bool ongoingConstruction = false;
 
-		bool trapEnConstruction = false;
+		bool ongoingTrapConstruction = false;
 
-		// indique la taille de la plateforme (à l'horizontale)
-		// variable reset à chaque nouvelle platforme
-		int taillePlateform = 0;
+		// Indicates the horizontal size of the platform
+		// Resets for each new platform
+		int platformSize = 0;
 
 
-		for (int i = 0; i < img->getHeight(); i++) {
-			for (int j = 0; j < img->getWidth(); j++) {
+		for (int i = 0; i < img->GetHeight(); i++) {
+			for (int j = 0; j < img->GetWidth(); j++) {
 
-		/****** RECUPERATION DE LA POSITION DU JOUEUR ******/
+		/****** GET THE PLAYER INITIAL POSITION ******/
 
 				if (charImg[i][j] == PLAYER_ASCII_CODE) {
 					playerInitialPosition = { j, i };
 				}
 
-		/****** RECUPERATION DE LA POSITION DU FREEZE CAMERA ******/
+		/****** GET THE FREEZE CAMERA POSITION ******/
 
 				if (charImg[i][j] == FREEZE_ASCII_CODE) {
 					playerFreezeXPosition = j;
 				}
 
-		/****** RECUPERATION DE LA POSITION DU SPEED UP ******/
+		/****** GET THE SPEED UP POSITION ******/
 
 				if (charImg[i][j] == SPEEDUP_ASCII_CODE) {
 					playerSpeedUpPosition = j;
 				}
 
-		/****** RECUPERATION DE LA POSITION DE LA FIN ******/
+		/****** GET THE END POSITION ******/
 
 				if (charImg[i][j] == END_ASCII_CODE) {
 					playerEndPosition = j;
 				}
 
 
-		/****** GENERATION DES PLATEFORMES ******/
+		/****** GENERATE PLATFORMS ******/
 
+				// If a platform is being constructed
+				// If the current character is part of this platform
+				if ((ongoingConstruction && charImg[i][j] == PLATFORM_ASCII_CODE) || (ongoingTrapConstruction && charImg[i][j] == TRAP_ASCII_CODE)) {
+					platformSize++;
 
-				// si on est en construction d'une plateforme
-				// si le caractere en cours est un caractere de la plateforme
-				if ((enConstruction && charImg[i][j] == PLATFORM_ASCII_CODE) || (trapEnConstruction && charImg[i][j] == TRAP_ASCII_CODE)) {
-					taillePlateform++;
-
-				// sinon, ça veut dire que nous sommes à la fin de la plateforme
+				// Else, this means we are at the end of the platform
 				} else {
 
-					// on créé donc l'entity de celle-ci
+					// So, we create it entity
 					wchar_t** platformGraph = new wchar_t*[1];
-					platformGraph[0] = new wchar_t[taillePlateform];
+					platformGraph[0] = new wchar_t[platformSize];
 
-					// si c'est une plateforme, on génère une plateforme
-					if (enConstruction) {
-						std::fill_n(platformGraph[0], taillePlateform, PLATFORM_ASCII_REPRESENTATION);
+					// If it's a platform, we create a platform
+					if (ongoingConstruction) {
+						std::fill_n(platformGraph[0], platformSize, PLATFORM_ASCII_REPRESENTATION);
 
-						Graphic* graph = new ArtGraphic(platformGraph, taillePlateform, 1);
+						Graphic* graph = new ArtGraphic(platformGraph, platformSize, 1);
 						graph->backgroundColor = ConsoleColor::BRIGHT_BLACK;
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);
-						colliderEnt3->graphicRender->setLayer(RenderLayer::Decor);
-						colliderEnt3->collider->SetLayer(&CollisionLayer::Decor);
+						colliderEnt3->GetGraphicRender()->SetLayer(RenderLayer::Decor);
+						colliderEnt3->GetCollider()->SetLayer(&CollisionLayer::Decor);
 
-						enConstruction = false;
+						ongoingConstruction = false;
 
 					}
 
-					// si c'est un piege, on génère un piège
-					if (trapEnConstruction) {
-						std::fill_n(platformGraph[0], taillePlateform, TRAP_ASCII_REPRESENTATION);
+					// If it's a trap, we create a trap
+					if (ongoingTrapConstruction) {
+						std::fill_n(platformGraph[0], platformSize, TRAP_ASCII_REPRESENTATION);
 
-						Graphic* graph = new ArtGraphic(platformGraph, taillePlateform, 1);
+						Graphic* graph = new ArtGraphic(platformGraph, platformSize, 1);
 						Entity* colliderEnt3 = new Entity(graph, posPlatform, true);
-						colliderEnt3->graphicRender->setLayer(RenderLayer::Decor);
-						colliderEnt3->collider->SetLayer(&CollisionLayer::Trap);
-						trapEnConstruction = false;
-						// TODO : en faire une trap entity
+						colliderEnt3->GetGraphicRender()->SetLayer(RenderLayer::Decor);
+						colliderEnt3->GetCollider()->SetLayer(&CollisionLayer::Trap);
+						ongoingTrapConstruction = false;
 
 					}
 					
 					
 				}
 
-				// début de la construction, initialisation de celle-ci
-				if (charImg[i][j] == PLATFORM_ASCII_CODE && !enConstruction) {
-					enConstruction = true;
-					taillePlateform = 0;
+				// Starting the construction and initializing it
+				if (charImg[i][j] == PLATFORM_ASCII_CODE && !ongoingConstruction) {
+					ongoingConstruction = true;
+					platformSize = 0;
 					posPlatform = { j, i };
 				}
 
-				if (charImg[i][j] == TRAP_ASCII_CODE && !trapEnConstruction) {
-					trapEnConstruction = true;
-					taillePlateform = 0;
+				if (charImg[i][j] == TRAP_ASCII_CODE && !ongoingTrapConstruction) {
+					ongoingTrapConstruction = true;
+					platformSize = 0;
 					posPlatform = { j, i };
 				}
 			}
@@ -122,25 +120,25 @@ void PlatformGenerator::generateWorld(std::string nomFichierImage) {
 		}
 
 	} else {
-		std::cout << "image non trouvée" << std::endl;
+		std::cout << "Image not found!" << std::endl;
 	}
 
 }
 
 
 
-Vec2i PlatformGenerator::getPlayerInitialPosition() {
+Vec2i PlatformGenerator::GetPlayerInitialPosition() const {
 	return playerInitialPosition;
 }
 
-int PlatformGenerator::getPlayerFreezeXPosition() {
+int PlatformGenerator::GetPlayerFreezeXPosition() const {
 	return playerFreezeXPosition;
 }
 
-int PlatformGenerator::getPlayerSpeedUpXPosition() {
+int PlatformGenerator::GetPlayerSpeedUpXPosition() const {
 	return playerSpeedUpPosition;
 }
 
-int PlatformGenerator::getPlayerEndXPosition() {
+int PlatformGenerator::GetPlayerEndXPosition() const {
 	return playerEndPosition;
 }

@@ -20,19 +20,19 @@ Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, 
 Camera::~Camera() {
 }
 
-Vec2i Camera::GetPosition() {
+Vec2i Camera::GetPosition() const {
 	return position;
 }
 
-Vec2i Camera::GetSize() {
+Vec2i Camera::GetSize() const {
 	return {width, height};
 }
 
-short Camera::GetWidth() {
+short Camera::GetWidth() const {
 	return width;
 }
 
-short Camera::GetHeight() {
+short Camera::GetHeight() const {
 	return height;
 }
 
@@ -54,15 +54,15 @@ void Camera::SetPlatformGenerator(PlatformGenerator* platformGeneratorPointer) {
 }
 
 void Camera::InitializeFreezePosition() {
-	freezeXPosition = platformGenerator->getPlayerFreezeXPosition();
+	freezeXPosition = platformGenerator->GetPlayerFreezeXPosition();
 }
 
 void Camera::InitializeSpeedUpPosition() {
-	speedUpXPosition = platformGenerator->getPlayerSpeedUpXPosition();
+	speedUpXPosition = platformGenerator->GetPlayerSpeedUpXPosition();
 }
 
 void Camera::InitializeEndPosition() {
-	endXPosition = platformGenerator->getPlayerEndXPosition();
+	endXPosition = platformGenerator->GetPlayerEndXPosition();
 }
 
 void Camera::Update() {
@@ -71,8 +71,6 @@ void Camera::Update() {
 	//}
 
 	// Freeze check
-	// TODO : Change -1
-	// TODO : Have a ref to the player ? We need to change the player speed when we speed up (instead of changing the speed on "enter") : new state function to call ? event ?
 	if (position.x == freezeXPosition) {
 		isFrozen = true;
 		freezeXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
@@ -82,10 +80,10 @@ void Camera::Update() {
 		speedUpXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 	else if (position.x >= endXPosition) {
-		// Generate title screen
+		// Generate end screen
 		ImageASCII *img = new ImageASCII();
-		if (img->genererImage("end_final.txt")) {
-			img->parcourirTableau(img->getImage());
+		if (img->GenerateImage("end_final.txt")) {
+			img->SweepTable(img->GetImage());
 		}
 		endXPosition = 99999; // TODO : Change this
 	}
@@ -93,7 +91,7 @@ void Camera::Update() {
 	// Start timer before the Camera begins to move
 	if (hasStarted) {
 		if (isFrozen) {
-			elapsedFreezeTime += Time::getDeltaTime() / 1000;
+			elapsedFreezeTime += Time::GetDeltaTime() / 1000;
 
 			if (elapsedFreezeTime >= 6.5f)
 			{
@@ -110,8 +108,8 @@ void Camera::Update() {
 void Camera::SetCameraAndPlayerSpeedFactor(int factor) {
 	speedFactor = factor;
 	Player* player = dynamic_cast<Player*>(followed);
-	player->setSpeedFactor(speedFactor);
-	player->updateSpeed();
+	player->SetSpeedFactor(speedFactor);
+	player->UpdateSpeed();
 }
 
 void Camera::SetFollowed(Entity* newFollowed) {

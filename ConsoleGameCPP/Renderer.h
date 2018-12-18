@@ -3,6 +3,12 @@
 class GraphicRender;
 class Camera;
 class RenderLayer;
+
+/*
+===============================================================================
+Class that manages the rendering
+===============================================================================
+*/
 class Renderer {
 public:
 	Renderer(Camera* camera, int frameCap = 0);
@@ -12,9 +18,11 @@ public:
 	void Render();
 	void EndFrame();
 	void ClearBuffer();
-	int getFrameCount();
-	float getRenderTime();
-	inline Camera* getCamera() const { return camera; }
+
+	// Accessors
+	int GetFrameCount() const;
+	float GetRenderTime() const;
+	inline Camera* GetCamera() const { return camera; }
 private:
 	CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH];
 	HANDLE outputHandle;

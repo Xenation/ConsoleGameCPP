@@ -181,7 +181,6 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextGraphic.h" />
     <ClInclude Include="Time.h" />
-    <ClInclude Include="TrapEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
@@ -217,7 +216,6 @@
     </ClCompile>
     <ClCompile Include="TextGraphic.cpp" />
     <ClCompile Include="Time.cpp" />
-    <ClCompile Include="TrapEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="end_final.txt" />

@@ -15,30 +15,30 @@ StandingState::~StandingState()
 {
 }
 
-void StandingState::enter(Player& player) {
-	player.setXVelocity(0);
+void StandingState::Enter(Player& player) {
+	player.SetXVelocity(0);
 	AnimationHolder::instance().SetStanding(player);
 }
 
-void StandingState::handleInput(Player& player, const std::array<bool, 7> &input) {
-	if (input[SPACE] && !player.getIsJumping()) { // Jumping
-		player.assignState(&PlayerState::jumping);
-		player.enter();
+void StandingState::HandleInput(Player& player, const std::array<bool, 7> &input) {
+	if (input[SPACE] && !player.GetIsJumping()) { // Jumping
+		player.AssignState(&PlayerState::jumping);
+		player.Enter();
 	}
-	else if ((input[D] || input[RIGHT_ARROW]) && !player.getIsBlockedRight()) { // Running right
-		player.assignState(&PlayerState::runningRight);
-		player.enter();
+	else if ((input[D] || input[RIGHT_ARROW]) && !player.GetIsBlockedRight()) { // Running right
+		player.AssignState(&PlayerState::runningRight);
+		player.Enter();
 	}
-	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.getIsBlockedLeft()) { // Running left
-		player.assignState(&PlayerState::runningLeft);
-		player.enter();
+	else if ((input[Q] || input[A] || input[LEFT_ARROW]) && !player.GetIsBlockedLeft()) { // Running left
+		player.AssignState(&PlayerState::runningLeft);
+		player.Enter();
 	}
 }
 
-void StandingState::update(Player& player) {
+void StandingState::Update(Player& player) {
 	// No update needed for the standing state
 }
 
-void StandingState::updateSpeed (Player& player) {
+void StandingState::UpdateSpeed (Player& player) {
 	// No update needed for the standing state
 }

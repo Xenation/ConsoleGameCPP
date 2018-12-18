@@ -19,7 +19,7 @@ Renderer::Renderer(Camera* camera, int frameCap) {
 		frameTime = 0;
 	}
 	frameStart = 0;
-	Time::getInstance();
+	Time::GetInstance();
 	dwBufferSize = { camera->GetWidth(), camera->GetHeight() };
 	dwBufferCoord = {0, 0};
 	rectRegion = {0, 0, camera->GetWidth() - 1, camera->GetHeight() - 1};
@@ -106,15 +106,15 @@ void Renderer::EndFrame() {
 	if (toSleep > 0) {
 		Sleep(toSleep);
 	}
-	Time::getInstance().deltaTime = Time::time() - frameStart;
+	Time::GetInstance().SetDeltaTime(Time::time() - frameStart);
 	frameStart = Time::time();
 	frameCount++;
 }
 
-int Renderer::getFrameCount() {
+int Renderer::GetFrameCount() const {
 	return frameCount;
 }
 
-float Renderer::getRenderTime() {
+float Renderer::GetRenderTime() const {
 	return renderTime;
 }

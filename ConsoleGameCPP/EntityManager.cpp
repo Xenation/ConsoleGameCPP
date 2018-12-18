@@ -28,5 +28,5 @@ void EntityManager::UpdateAllEntities() {
 	for (std::pair<unsigned int, Entity*> pair : *entities) {
 		pair.second->Update();
 	}
-	PhysicsManager::getInstance().UpdateAllColliders();
+	PhysicsManager::GetInstance().UpdateAllColliders();
 }

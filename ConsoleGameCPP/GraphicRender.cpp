@@ -20,24 +20,24 @@ GraphicRender::~GraphicRender() {
 }
 
 void GraphicRender::Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]) {
-	if (entity->graphic == nullptr) return;
-	Box camBox = Game::renderer->getCamera()->GetBoundingBox();
-	Vec2i screenPos = entity->position - Game::renderer->getCamera()->GetPosition();
-	for (int y = 0; y < entity->graphic->height; y++) {
-		for (int x = 0; x < entity->graphic->width; x++) {
-			if (!isInBox(camBox, {entity->position.x + x, entity->position.y + y})) continue;
-			buffer[screenPos.y + y][screenPos.x + x].Char.UnicodeChar = entity->graphic->contents[y][x];
-			buffer[screenPos.y + y][screenPos.x + x].Attributes = (entity->graphic->backgroundColor << 4) | entity->graphic->foregroundColor;
+	if (entity->GetGraphic() == nullptr) return;
+	Box camBox = Game::GetRenderer()->GetCamera()->GetBoundingBox();
+	Vec2i screenPos = entity->GetPosition() - Game::GetRenderer()->GetCamera()->GetPosition();
+	for (int y = 0; y < entity->GetGraphic()->height; y++) {
+		for (int x = 0; x < entity->GetGraphic()->width; x++) {
+			if (!isInBox(camBox, {entity->GetPosition().x + x, entity->GetPosition().y + y})) continue;
+			buffer[screenPos.y + y][screenPos.x + x].Char.UnicodeChar = entity->GetGraphic()->contents[y][x];
+			buffer[screenPos.y + y][screenPos.x + x].Attributes = (entity->GetGraphic()->backgroundColor << 4) | entity->GetGraphic()->foregroundColor;
 		}
 	}
 }
 
-void GraphicRender::setLayer(RenderLayer* layer) {
+void GraphicRender::SetLayer(RenderLayer* layer) {
 	this->layer->Unregister(uid);
 	this->layer = layer;
 	uid = this->layer->Register(this);
 }
 
-RenderLayer* GraphicRender::getLayer() {
+RenderLayer* GraphicRender::GetLayer() {
 	return layer;
 }

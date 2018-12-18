@@ -3,51 +3,42 @@
 #include <iostream>
 #include<fstream>
 
-
-
-
-
+/*
+===============================================================================
+Class that reads a text file and creates an image
+===============================================================================
+*/
 class ImageASCII {
 
 public: 
 	
-	//constructeur
-	ImageASCII();
+	ImageASCII(); // Constructor
 
-	// A APPELER OBLIGATOIREMENT AVANT TOUT AUTRE FONCTION DE LA CLASSE
-	bool genererImage(std::string nomImg);
+	bool GenerateImage(std::string nomImg); // To be called before the other methods
 
-	// debug only
-	void parcourirTableau(char **tableau);
+	void SweepTable(char **tableau); // Needed for debug
 
-	// retourne le nombre de colonnes de l'image
-	int getWidth() const;
-
-	// retourne le nombre de lignes de l'image
-	int getHeight() const;
-
-	// retourne l'image
-	char** getImage() const;
+	// Accessors
+	int GetWidth() const;
+	int GetHeight() const;
+	char** GetImage() const;
 
 private:
 
-	// le nombre de lignes possédées par le fichier
-	int nb_lignes = 0;
+	int nbLines = 0; // Number of lines of the file
 
-	//le nombre de colonnes possédées par le fichier
-	int nb_colonnes = -1;
+	int nbColumns = -1; // Number of colums of the file
 
-	// flag indiquant si le fichier possède le même nombre de caractères sur chaque ligne
-	bool uniforme_ligne = true;
+	bool hasUniformLines = true; // Flag indicating whether or not the file has the same number of characters on every line
 
 	char** image = nullptr;
 
-	std::string nomImage;
+	std::string imageName;
 
-	bool getNbLignesNbColonnes(std::string nomImg);
+	bool GetLinesAndColumnsNumber(std::string nomImg);
 
-	char **initialiserTableau(int col, int lign);
+	char **InitializeTable(int col, int lign);
 
-	void remplirTableau(char **tableau, std::string nomImage);
+	void FillTable(char **tableau, std::string nomImage);
 
 };

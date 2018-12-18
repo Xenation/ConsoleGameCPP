@@ -30,7 +30,7 @@ TextGraphic::~TextGraphic() {
 
 }
 
-void TextGraphic::setText(const char* text) {
+void TextGraphic::SetText(const char* text) {
 	if (contents != nullptr) {
 		delete[] contents[0];
 		delete[] contents;
@@ -47,7 +47,7 @@ void TextGraphic::setText(const char* text) {
 	}
 }
 
-char* TextGraphic::getText() {
+char* TextGraphic::GetText() const {
 	char* txt = new char[width];
 	for (int i = 0; i < width; i++) {
 		txt[i] = contents[0][i];
