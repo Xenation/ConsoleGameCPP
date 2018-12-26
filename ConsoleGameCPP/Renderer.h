@@ -25,7 +25,9 @@ public:
 	void ClearBuffer();
 
 	// Accessors
+	// Returns the number of rendered frames
 	int GetFrameCount() const;
+	// Returns the time taken to render the frame
 	float GetRenderTime() const;
 	inline Camera* GetCamera() const { return camera; }
 private:

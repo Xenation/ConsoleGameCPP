@@ -73,12 +73,14 @@ void Renderer::ResetFrameTimer() {
 }
 
 void Renderer::Render() {
-	for (int i = 0; i < RenderLayer::layerCount; i++) {
+	// Render all graphic elements to buffer
+	for (int i = 0; i < RenderLayer::layerCount; i++) { // Loop through layers
 		if (RenderLayer::layers[i] == nullptr) continue;
 		for (std::pair<unsigned int, GraphicRender*> renderPair : *RenderLayer::layers[i]->renders) {
 			renderPair.second->Render(buffer);
 		}
 	}
+	// Write buffer to console window
 	WriteConsoleOutput(outputHandle, (CHAR_INFO *) buffer, dwBufferSize, dwBufferCoord, &rectRegion);
 }
 

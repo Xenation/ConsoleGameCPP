@@ -19,12 +19,13 @@ Collider::~Collider() {
 	PhysicsManager::GetInstance().UnregisterCollider(uid);
 }
 
-void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
-	if (isStatic) return;
+void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) { // Collision Checks
+	if (isStatic) return; // Static objects do not actively check for collisions
 
-	for (std::pair<unsigned int, Collider*> pair : (*colliders)) {
-		if (pair.second == this || !((1 << pair.second->layer->layerIndex) & this->layer->layerMask)) continue;
+	for (std::pair<unsigned int, Collider*> pair : (*colliders)) { // Loop through all colliders
+		if (pair.second == this || !((1 << pair.second->layer->layerIndex) & this->layer->layerMask)) continue; // Avoid the current collider and any collider on a layer that does not interact with the current
 
+		// Simplify checks by ordering left/right and top/bottom
 		Collider* leftMost;
 		Collider* rightMost;
 		if (pair.second->position->x < this->position->x) {
@@ -46,6 +47,7 @@ void Collider::Update(std::unordered_map<unsigned int, Collider*>* colliders) {
 			bottomMost = pair.second;
 		}
 
+		// Check for touch
 		if (leftMost->size.x == rightMost->position->x - leftMost->position->x
 			&& topMost->size.y > bottomMost->position->y - topMost->position->y) { // Left/Right side touch
 			if (leftMost == this) { // Right

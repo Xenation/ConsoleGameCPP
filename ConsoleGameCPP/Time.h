@@ -13,7 +13,7 @@ public:
 		static Time instance;
 		return instance;
 	}
-	// Returns the time taken by the last frame
+	// Returns the time between the current and last frame
 	static float GetDeltaTime();
 	static void SetDeltaTime(float newTime);
 	// Returns the time since the start of the application
