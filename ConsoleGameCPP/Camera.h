@@ -19,7 +19,6 @@ public:
 	Vec2i GetSize() const;
 	short GetWidth() const;
 	short GetHeight() const;
-	void SetPlatformGenerator(PlatformGenerator* platformGeneratorPointer);
 	void SetFollowed(Entity* newFollowed);
 	void SetHasStarted(bool newState);
 	void SetCameraAndPlayerSpeedFactor(int factor);
@@ -28,9 +27,7 @@ public:
 	void Reset();
 
 	// Used to initialize the notable positions of the camera in the level
-	void InitializeFreezePosition();
-	void InitializeSpeedUpPosition();
-	void InitializeEndPosition();
+	void InitializeAllPositions(PlatformGenerator *platformGenerator);
 
 	// Update design pattern
 	virtual void Update();

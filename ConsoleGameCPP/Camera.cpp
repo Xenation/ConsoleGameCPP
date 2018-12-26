@@ -4,6 +4,7 @@
 #include "Time.h"
 #include "PlatformGenerator.h"
 #include "Player.h"
+#include "Game.h"
 
 
 Camera::Camera(Vec2i pos, int width, int height) : Entity::Entity(nullptr, pos, false) {
@@ -42,26 +43,16 @@ void Camera::Reset() {
 	// Reset the freeze settings
 	isFrozen = false;
 	elapsedFreezeTime = 0.0f;
-	InitializeFreezePosition();
-	InitializeSpeedUpPosition();
+	InitializeAllPositions(platformGenerator);
 	// Reset the camera position
 	position.x = 0;
 	SetCameraAndPlayerSpeedFactor(1);
 }
 
-void Camera::SetPlatformGenerator(PlatformGenerator* platformGeneratorPointer) {
-	this->platformGenerator = platformGeneratorPointer;
-}
-
-void Camera::InitializeFreezePosition() {
+void Camera::InitializeAllPositions(PlatformGenerator *platformGenerator) {
+	this->platformGenerator = platformGenerator;
 	freezeXPosition = platformGenerator->GetPlayerFreezeXPosition();
-}
-
-void Camera::InitializeSpeedUpPosition() {
 	speedUpXPosition = platformGenerator->GetPlayerSpeedUpXPosition();
-}
-
-void Camera::InitializeEndPosition() {
 	endXPosition = platformGenerator->GetPlayerEndXPosition();
 }
 
@@ -80,12 +71,7 @@ void Camera::Update() {
 		speedUpXPosition = -1; // Reset to an impossible value for the camera so that the freeze never launches again
 	}
 	else if (position.x >= endXPosition) {
-		// Generate end screen
-		ImageASCII *img = new ImageASCII();
-		if (img->GenerateImage("end_final.txt")) {
-			img->SweepTable(img->GetImage());
-		}
-		endXPosition = 99999; // TODO : Change this
+		Game::SetIsEndReached(true); // Stops the game and launches the end screen
 	}
 
 	// Start timer before the Camera begins to move

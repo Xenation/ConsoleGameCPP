@@ -35,6 +35,14 @@ public:
 		scrollStarted = newState;
 	}
 
+	static bool GetIsEndReached() {
+		return isEndReached;
+	}
+
+	static void SetIsEndReached(bool newState) {
+		isEndReached = newState;
+	}
+
 private:
 	Game();
 	~Game();
@@ -43,5 +51,6 @@ private:
 	static Renderer* renderer;
 	static SoundManager* soundManager;
 	static bool scrollStarted;
+	static bool isEndReached;
 };
 
