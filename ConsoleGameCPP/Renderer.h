@@ -13,10 +13,15 @@ class Renderer {
 public:
 	Renderer(Camera* camera, int frameCap = 0);
 	~Renderer();
+	// Initializes window and rendering variables
 	void Initialize();
+	// Resets the timer (making the start of the frame now)
 	void ResetFrameTimer();
+	// Renders the current game's state to the window
 	void Render();
+	// Marks the end of a frame
 	void EndFrame();
+	// Clears the frame buffer
 	void ClearBuffer();
 
 	// Accessors

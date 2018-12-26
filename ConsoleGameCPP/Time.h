@@ -4,7 +4,7 @@
 
 /*
 ===============================================================================
-Class used for the time functions
+Class used for time keeping
 ===============================================================================
 */
 class Time {
@@ -13,8 +13,10 @@ public:
 		static Time instance;
 		return instance;
 	}
+	// Returns the time taken by the last frame
 	static float GetDeltaTime();
 	static void SetDeltaTime(float newTime);
+	// Returns the time since the start of the application
 	static float time();
 private:
 	Time();

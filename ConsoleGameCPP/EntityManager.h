@@ -17,8 +17,11 @@ public:
 		static EntityManager instance;
 		return instance;
 	}
+	// Registers an entity to be updated
 	unsigned int RegisterEntity(Entity* entity);
+	// Unregisters an entity
 	void UnregisterEntity(unsigned int uid);
+	// Updates all the entities
 	void UpdateAllEntities();
 private:
 	EntityManager();

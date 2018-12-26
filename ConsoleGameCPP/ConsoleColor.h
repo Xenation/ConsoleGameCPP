@@ -1,6 +1,11 @@
 #pragma once
 
 #include <Windows.h>
+/*
+===============================================================================
+Enum used to quickly define a console color
+===============================================================================
+*/
 enum ConsoleColor : WORD {
 	BLACK			= 0b0000,
 	DARK_BLUE		= 0b0001,

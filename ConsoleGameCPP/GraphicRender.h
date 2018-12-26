@@ -14,6 +14,7 @@ class GraphicRender {
 public:
 	GraphicRender(Entity* entity, RenderLayer* layer);
 	~GraphicRender();
+	// Renders the graphic element to the given buffer
 	virtual void Render(CHAR_INFO buffer[SCREEN_HEIGHT][SCREEN_WIDTH]);
 
 	// Accessors and mutators

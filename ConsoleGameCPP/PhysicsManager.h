@@ -14,8 +14,11 @@ public:
 		static PhysicsManager instance;
 		return instance;
 	}
+	// Registers a collider to be used in collisions
 	unsigned int RegisterCollider(Collider* collider);
+	// Unregisters a collider using it's unique id
 	void UnregisterCollider(unsigned int uid);
+	// Updates the state of all the colliders
 	void UpdateAllColliders();
 private:
 	std::unordered_map<unsigned int, Collider*>* colliders;
