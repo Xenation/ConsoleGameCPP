@@ -218,6 +218,7 @@
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ConsoleGameCPP\world_test_perf.txt" />
     <Text Include="end_final.txt" />
     <Text Include="title.txt" />
     <Text Include="world_final.txt" />

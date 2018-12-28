@@ -23,6 +23,7 @@ public:
 	void UnregisterEntity(unsigned int uid);
 	// Updates all the entities
 	void UpdateAllEntities();
+	int getSizeList();
 private:
 	EntityManager();
 	~EntityManager();

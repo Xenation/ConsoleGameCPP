@@ -214,5 +214,8 @@
     <Text Include="end_final.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="..\..\..\..\..\..\..\L%27ENJMIN\programmation\ptits programmes\repoProjetConsole\ConsoleGameCPP\ConsoleGameCPP\ConsoleGameCPP\world_test_perf.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

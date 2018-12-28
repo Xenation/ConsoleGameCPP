@@ -30,3 +30,7 @@ void EntityManager::UpdateAllEntities() {
 	}
 	PhysicsManager::GetInstance().UpdateAllColliders();
 }
+
+int EntityManager::getSizeList() {
+	return entities->size();
+}
