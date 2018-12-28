@@ -34,3 +34,7 @@ void EntityManager::UpdateAllEntities() {
 int EntityManager::getSizeList() {
 	return entities->size();
 }
+
+int EntityManager::getSizeList() {
+	return entities->size();
+}
